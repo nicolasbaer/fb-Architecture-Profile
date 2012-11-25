@@ -1,0 +1,18 @@
+<?php
+
+	// MySQL configuration
+	$mysql_host = "127.0.0.1:8889";
+	$mysql_user = "root";
+	$mysql_password = "root";
+	$mysql_database = "scenograph";
+	
+	$mysql_config = array($mysql_host, $mysql_user, $mysql_password, $mysql_database);
+	
+	// Facebook configuration
+	$fb_api_key = "KEY";
+	$fb_app_secret = "SECRET";
+	$fb_canvas_url = "https://apps.facebook.com/KEY/";
+	
+	$fb_oauth_url = 'https://www.facebook.com/dialog/oauth/?client_id='.$fb_api_key.'&redirect_uri='.$fb_canvas_url.'&scope=user_about_me,user_relationships'
+
+?>
