@@ -12,6 +12,11 @@ $facebook = new Facebook(array('appId'  => $fb_api_key,'secret' => $fb_app_secre
 if(!isset($_SESSION['IS_AUTHENTICATED']) && $facebook->getUser() > 0){
 	// set authentication
 	$_SESSION['IS_AUTHENTICATED'] = true;
+	
+	// check if repository is already instanitated
+	if(!isset($repository)){
+		$repository = new Repository($mysql_config);
+	}
 
 	// check if this is the first login of the user
 	$user = $repository->findUserByFBId($facebook->getUser());

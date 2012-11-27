@@ -1,2 +1,57 @@
 /* Styles.css */
+#menu_well {
+position:absolute;
+bottom:0px;
+left:60px;
+opacity: 0.85;
+}
+
+#menu_well:hover {
+opacity:1.0;
+}
+
+#menu_content {
+
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+.scroll-section {
+    overflow:auto;
+    padding-top: 4px;
+    height:150px;
+}
+
+.thumbnail_span {
+    margin-left: 5px;
+}
+
+td {
+    margin-top:50%;
+
+}
+
+td, th {
+  border: 0 !important;
+} 
+
+.model-designer-button{
+    width:185px;
+}
+
+.model-designer-dropdown {
+    position: absolute;
+    z-index:10;
+}
+
+.content-accordion {
+ background-color:white;
+
+}
+
+.content-accordion-inner {
+ padding-bottom: 4px;
+ padding-top: 4px;
+}
 

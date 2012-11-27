@@ -54,7 +54,7 @@
 		<div id="map3d" style="height: 100%; width: 100%;"></div>
 	
 		<!-- include control panel -->
-
+		<?php require_once('./library/php.inc/control.inc.php');?>
 	
 	</body>
 </html>
