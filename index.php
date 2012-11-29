@@ -1,4 +1,5 @@
 <?php	
+
 	define('__ROOT__', dirname(__FILE__)); 
 	session_start();
 	
@@ -10,6 +11,8 @@
 
 	// include facebook security check
 	require_once('./library/php.inc/fb-security.php');
+	
+	require_once('./Connections/db1.php');
 
 ?>
 

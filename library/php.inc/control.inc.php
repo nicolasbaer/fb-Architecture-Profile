@@ -1,18 +1,41 @@
+<?php require_once('Connections/db1.php'); ?>
 <?php
 
-
+	function insertModelListItem($title, $architect, $thumb_path) {
+		
+		echo '<div class="row-fluid" id="module_item_">
+                        <div class="span2">
+        						<div class="thumbnail thumb_li">
+                                                <img src="http://placehold.it/160x120">
+                                                    </div>
+                           </div>
+                        <div class="span6">'.$title.'<br />
+'.$architect.'</div>
+                <div class="span4">
+                           <div class="btn-group">
+                              <a class="btn" href="#"><i class="icon-eye-open icon-black"></i></a>
+                              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Fly to Model</a></li>
+                                <li><a href="#">Unload Model</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Manage Model</a></li>
+                              </ul>
+                            </div> <!-- /btn group-->
+                        </div>
+                    </div>';
+		
+	}
 
 
 ?>
-
-
 
 
 <div class="well well-small" style="bottom" id="menu_well">
    
     <div class="navbar-inner">
         <form class="navbar-search pull-left">
-            <input type="text" class="search-query" placeholder="enter name">
+            <input type="text" class="search-query" placeholder="enter name" name="search" id="search">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
                 <!-- onclick="return false" prevents page reload -->
                 <button class="btn" id="toggle_button" onclick="changeToggleButtonIcon()">
@@ -37,136 +60,10 @@
             <div id="collapseTwo" class="accordion-body collapse content-accordion">
             <div class="accordion-inner content-accordion-inner">
 
-            <div class="scroll-section">
+            <div class="scroll-section" id="loaded_list">
 
-            <ul class="nav nav-list">
-                <li>
-                    <div class="row">
-                        <div class="span1 thumbnail_span">
-                        
-                    
-                    <div class="thumbnail thumb_li">
-                        <img src="http://placehold.it/160x120">
-                    </div>
-                    </div>
-                            
-                    <div class="span2">
-                    <div class="btn-group ">
-                        <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                        <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                        <ul class="dropdown-menu model-designer-dropdown" >
-                            <li><a href="#">Fly to Model</a></li>
-                            <li><a href="#">Unload Model</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Manage Model</a></li>
-                        </ul>
-                    </div><!-- /btn-group -->
-                    </div>
-                    </div>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <div class="row">
-                        <div class="span1 thumbnail_span">
-                            
-                            
-                            <div class="thumbnail thumb_li">
-                                <img src="http://placehold.it/160x120">
-                                    </div>
-                        </div>
-                        
-                        <div class="span2">
-                            <div class="btn-group ">
-                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                <ul class="dropdown-menu model-designer-dropdown" >
-                                    <li><a href="#">Fly to Model</a></li>
-                                    <li><a href="#">Unload Model</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Manage Model</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                        </div>
-                    </div>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <div class="row">
-                        <div class="span1 thumbnail_span">
-                            
-                            
-                            <div class="thumbnail">
-                                <img src="http://placehold.it/350x150">
-                                    </div>
-                        </div>
-                        
-                        <div class="span2">
-                            <div class="btn-group ">
-                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                <ul class="dropdown-menu model-designer-dropdown" >
-                                    <li><a href="#">Fly to Model</a></li>
-                                    <li><a href="#">Unload Model</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Manage Model</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                        </div>
-                    </div>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <div class="row">
-                        <div class="span1 thumbnail_span">
-                            
-                            
-                            <div class="thumbnail thumb_li pull-left">
-                                <img src="http://placehold.it/160x120">
-                                    </div>
-                        </div>
-                        
-                        <div class="span2">
-                            <div class="btn-group ">
-                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                <ul class="dropdown-menu" style="z-index:1001" >
-                                    <li><a href="#">Fly to Model</a></li>
-                                    <li><a href="#">Unload Model</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Manage Model</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                        </div>
-                    </div>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <div class="row">
-                        <div class="span1 thumbnail_span">
-                            
-                            
-                            <div class="thumbnail thumb_li pull-left">
-                                <img src="http://placehold.it/350x150">
-                                    </div>
-                        </div>
-                        
-                        <div class="span2">
-                            <div class="btn-group ">
-                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                <ul class="dropdown-menu" style="z-index:1001" >
-                                    <li><a href="#">Fly to Model</a></li>
-                                    <li><a href="#">Unload Model</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Manage Model</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                        </div>
-                    </div>
-                </li>
-                
-            </ul>
-            </div>
+            
+			  No models loaded at this time.</div>
             </div>
             </div>
             </div>
@@ -182,135 +79,28 @@
                 <div id="collapseThree" class="accordion-body collapse content-accordion">
                     <div class="accordion-inner content-accordion-inner">
                         
-                        <div class="scroll-section">
+                        <div class="scroll-section" id="mymodels_list">
                             
-                            <ul class="nav nav-list">
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li">
-                                                <img src="http://placehold.it/160x120">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu model-designer-dropdown" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li">
-                                                <img src="http://placehold.it/160x120">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu model-designer-dropdown" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail">
-                                                <img src="http://placehold.it/350x150">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu model-designer-dropdown" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li pull-left">
-                                                <img src="http://placehold.it/160x120">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu" style="z-index:1001" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li pull-left">
-                                                <img src="http://placehold.it/350x150">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu" style="z-index:1001" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                            </ul>
+                            <?php 
+                  				
+								//add where clause
+								
+								mysql_select_db($database_db1, $db1);
+								$query_itemlist = "SELECT * FROM Building LEFT JOIN User ON Building.fk_user = User.id ORDER BY date_upload DESC";
+								$itemlist = mysql_query($query_itemlist, $db1) or die(mysql_error());
+								$row_itemlist = mysql_fetch_assoc($itemlist);
+								$totalRows_itemlist = mysql_num_rows($itemlist);
+								
+								if($totalRows_itemlist!=0) { do {
+									
+									insertModelListItem($row_itemlist['title'], $row_itemlist['name'], "");
+									
+								} while($row_itemlist = mysql_fetch_assoc($itemlist)); } else {
+									echo "You don't have any models yet.";	
+								} 				
+							
+							?>
+                
                         </div>
                     </div>
                 </div>
@@ -321,141 +111,30 @@
             <div class="accordion-group">
                 <div class="accordion-heading content-accordion">
                     <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
-                        Models of Friends and Public Models
+                        All models / Search
                     </a>
                 </div>
                 <div id="collapseFour" class="accordion-body collapse content-accordion">
                     <div class="accordion-inner content-accordion-inner">
                         
-                        <div class="scroll-section">
+                        <div class="scroll-section" id="allmodels_list">
                             
-                            <ul class="nav nav-list">
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li">
-                                                <img src="http://placehold.it/160x120">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu model-designer-dropdown" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li">
-                                                <img src="http://placehold.it/160x120">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu model-designer-dropdown" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail">
-                                                <img src="http://placehold.it/350x150">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu model-designer-dropdown" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li pull-left">
-                                                <img src="http://placehold.it/160x120">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu" style="z-index:1001" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="row">
-                                        <div class="span1 thumbnail_span">
-                                            
-                                            
-                                            <div class="thumbnail thumb_li pull-left">
-                                                <img src="http://placehold.it/350x150">
-                                                    </div>
-                                        </div>
-                                        
-                                        <div class="span2">
-                                            <div class="btn-group ">
-                                                <button class="btn btn-small model-designer-button"><span>model</span><br/><span>designer</span></button>
-                                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><br/><span>&nbsp;</span></button>
-                                                <ul class="dropdown-menu" style="z-index:1001" >
-                                                    <li><a href="#">Fly to Model</a></li>
-                                                    <li><a href="#">Unload Model</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Manage Model</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                            </ul>
+                            <?php 
+                  
+								mysql_select_db($database_db1, $db1);
+								$query_itemlist = "SELECT * FROM Building LEFT JOIN User ON Building.fk_user = User.id ORDER BY date_upload DESC";
+								$itemlist = mysql_query($query_itemlist, $db1) or die(mysql_error());
+								$row_itemlist = mysql_fetch_assoc($itemlist);
+								$totalRows_itemlist = mysql_num_rows($itemlist);
+								
+								if($totalRows_itemlist!=0) { do {
+									
+									insertModelListItem($row_itemlist['title'], $row_itemlist['name'], "");
+									
+								} while($row_itemlist = mysql_fetch_assoc($itemlist)); } 				
+							
+							?>
+                            
                         </div>
                     </div>
                 </div>
