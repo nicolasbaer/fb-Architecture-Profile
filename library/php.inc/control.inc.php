@@ -12,7 +12,7 @@
 		echo '<div class="row-fluid" id="module_item_">
                         <div class="span2">
         						<div class="thumbnail thumb_li">
-                                                 http://graph.facebook.com/'.$userId.'/picture
+                                                 <img src="http://graph.facebook.com/'.$userId.'/picture" />
                                                     </div>
                            </div>
                         <div class="span6">'.$title.'<br />
@@ -92,7 +92,7 @@
 								$buildings = $repository->findAllBuildingsByUser($facebook->getUser());
 								
 								foreach($buildings as $building){
-									insertModelListItem($building['building.name'], $building['user.name'], $building['user.id']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
 								}
 							
 							?>
@@ -117,10 +117,10 @@
                             
                             <?php 
                   
-								$buildings = $repository->findAllBuildingsVisibleToUser($facebook, $facebook->getUser());
+								$buildings = $repository->findAllBuildingsVisibleToUser($facebook);
 								
 								foreach($buildings as $building){
-									insertModelListItem($building['building.name'], $building['user.name'], $building['user.id']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
 								}
 							
 							?>

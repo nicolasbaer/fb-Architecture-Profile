@@ -5,10 +5,15 @@ $(document).ready(function() {
 						// Model / Architect Search
 						$("#search").keyup(function() {
 						
+						
+							searchkey = $(this).val();
+							
+							var json = '{"keyword":"'+searchkey+'"}';
+							
 						   $.ajax({
 						   type: "POST",
-						   url: "library/php.inc/updateList.inc.php",
-						   data: "&ajax=true&search=" + $(this).val(),
+						   url: "/ajax.php",
+						   data: "&method=searchControlPanel&params="+json,
 							error: function(){
 									
 										alert("An error occurred...!");
@@ -25,7 +30,17 @@ $(document).ready(function() {
 								
 						
 							}).done(function( content ) {
-							  $("#allmodels_list").html(content);
+								
+								//content is encoded as JSON object
+							
+								
+								var obj = jQuery.parseJSON(content);
+								
+								
+								
+							  $("#mymodels_list").html(obj['mybuildings']);
+							  $("#allmodels_list").html(obj['otherbuildings']);
+							  
 							});
 						
 						

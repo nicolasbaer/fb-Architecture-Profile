@@ -1,5 +1,6 @@
 <?php
 
+define('__ROOT__', dirname(__FILE__)); 
 
 // include config file
 require_once('./library/config.php');
@@ -11,53 +12,25 @@ require_once('./library/php.inc/db/repository.php');
 require_once('./library/php.inc/fb-security.php');
 
 
-$isXmlHttpRequest = array_key_exists('X_REQUESTED_WITH', $_SERVER) &&
-$_SERVER['X_REQUESTED_WITH'] == 'XMLHttpRequest';
 
-
-if ($isXmlHttpRequest) {
-	
 	$method = $_POST['method'];
-	$params = $_POST['params'];
+	$params = (array)json_decode($_POST['params']);
 	
-	call_user_func_array($method , $params );
-}
-else {
-    echo "nothing to do here";
-}
-							
-
-
-
-function searchControlPanel($keyword = null){
+	$output = call_user_func_array($method , $params);
 	
-	$myBuildings = $repository->findAllBuildingsByUser($facebook->getUser(), $keyword);
-	$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
+	echo json_encode($output);
 	
-	$outputMyBuildings = "";
-	
-	foreach(){
-		
-	}
+	die();
 	
 	
 	
-	
-	$outputOtherBuildings = "";
-	
-	
-	
-	
-}
-
-
 
 function insertModelListItem($title, $architect, $userId) {
 	
-	echo '<div class="row-fluid" id="module_item_">
+	$return = '<div class="row-fluid" id="module_item_">
                     <div class="span2">
     						<div class="thumbnail thumb_li">
-                                             http://graph.facebook.com/'.$userId.'/picture
+                                             <img src="http://graph.facebook.com/'.$userId.'/picture" />
                                                 </div>
                        </div>
                     <div class="span6">'.$title.'<br />
@@ -75,8 +48,46 @@ function insertModelListItem($title, $architect, $userId) {
                         </div> <!-- /btn group-->
                     </div>
                 </div>';
+				
+		return $return;
 	
 }
+
+
+
+function searchControlPanel($keyword = null){
+	
+	global $repository;
+	global $facebook;
+
+	
+	$myBuildings = $repository->findAllBuildingsByUser($facebook->getUser(), $keyword);
+	$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
+	
+	$outputMyBuildings = "";
+	 
+	foreach($myBuildings as $building){
+		$outputMyBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
+	}
+	
+	
+	$outputOtherBuildings = "";
+	
+	foreach($otherBuildings as $building){
+		$outputOtherBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
+	}
+	
+	
+	$output['mybuildings'] = $outputMyBuildings;
+	$output['otherbuildings'] = $outputOtherBuildings;
+	
+	return $output;
+	
+
+}
+
+
+
 
 
 ?>
