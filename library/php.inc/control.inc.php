@@ -1,12 +1,18 @@
-<?php require_once('Connections/db1.php'); ?>
 <?php
+	// include config file
+	require_once(__ROOT__.'/library/config.php');
+	
+	// include mysql library and repositories
+	require_once(__ROOT__.'/library/php.inc/db/repository.php');
+	
+	
 
-	function insertModelListItem($title, $architect, $thumb_path) {
+	function insertModelListItem($title, $architect, $userId) {
 		
 		echo '<div class="row-fluid" id="module_item_">
                         <div class="span2">
         						<div class="thumbnail thumb_li">
-                                                <img src="http://placehold.it/160x120">
+                                                 http://graph.facebook.com/'.$userId.'/picture
                                                     </div>
                            </div>
                         <div class="span6">'.$title.'<br />
@@ -82,22 +88,12 @@
                         <div class="scroll-section" id="mymodels_list">
                             
                             <?php 
-                  				
-								//add where clause
+                  			
+								$buildings = $repository->findAllBuildingsByUser($facebook->getUser());
 								
-								mysql_select_db($database_db1, $db1);
-								$query_itemlist = "SELECT * FROM Building LEFT JOIN User ON Building.fk_user = User.id ORDER BY date_upload DESC";
-								$itemlist = mysql_query($query_itemlist, $db1) or die(mysql_error());
-								$row_itemlist = mysql_fetch_assoc($itemlist);
-								$totalRows_itemlist = mysql_num_rows($itemlist);
-								
-								if($totalRows_itemlist!=0) { do {
-									
-									insertModelListItem($row_itemlist['title'], $row_itemlist['name'], "");
-									
-								} while($row_itemlist = mysql_fetch_assoc($itemlist)); } else {
-									echo "You don't have any models yet.";	
-								} 				
+								foreach($buildings as $building){
+									insertModelListItem($building['building.name'], $building['user.name'], $building['user.id']);
+								}
 							
 							?>
                 
@@ -121,17 +117,11 @@
                             
                             <?php 
                   
-								mysql_select_db($database_db1, $db1);
-								$query_itemlist = "SELECT * FROM Building LEFT JOIN User ON Building.fk_user = User.id ORDER BY date_upload DESC";
-								$itemlist = mysql_query($query_itemlist, $db1) or die(mysql_error());
-								$row_itemlist = mysql_fetch_assoc($itemlist);
-								$totalRows_itemlist = mysql_num_rows($itemlist);
+								$buildings = $repository->findAllBuildingsVisibleToUser($facebook, $facebook->getUser());
 								
-								if($totalRows_itemlist!=0) { do {
-									
-									insertModelListItem($row_itemlist['title'], $row_itemlist['name'], "");
-									
-								} while($row_itemlist = mysql_fetch_assoc($itemlist)); } 				
+								foreach($buildings as $building){
+									insertModelListItem($building['building.name'], $building['user.name'], $building['user.id']);
+								}
 							
 							?>
                             

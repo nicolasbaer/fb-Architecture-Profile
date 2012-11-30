@@ -35,8 +35,12 @@ class Repository{
 	
 	
 	//----- building queries -----//
-	public function findAllBuildingsByUser($fbId){
-		return $this->db->q("select * from Building b where b.fk_user = '".$fbId."'");
+	public function findAllBuildingsByUser($fbId, $keyword = null){
+		$whereClause = "";
+		if(isset($keyword)){
+			$whereClause = ' and building.name like "%'.$keyword.'%" or user.name like "%'.$keyword.'%"'; 
+		}
+		return $this->db->q("select building.*, user.* from Building building join User user on user.id = building.fk_user where building.fk_user = '".$fbId."' ". $whereClause);
 	}
 	
 	public function findAllBuildingsVisibleToUser($facebook, $keyword = null){
