@@ -35,8 +35,12 @@ class Repository{
 	
 	
 	//----- building queries -----//
-	public function findAllBuildingsVisibleToUser($keyword = null){
-		$networkIds = $this->getUserNetworkIds();
+	public function findAllBuildingsByUser($fbId){
+		return $this->db->q("select * from Building b where b.fk_user = '".$fbId."'");
+	}
+	
+	public function findAllBuildingsVisibleToUser($facebook, $keyword = null){
+		$networkIds = $this->getUserNetworkIds($facebook);
 		
 		// build where statement
 		$where = "";
@@ -58,15 +62,16 @@ class Repository{
 		return $this->db->q("select building.*, user.* from Building building join User user on building.fk_user = user.id where (".$where." OR building.visibility = 2) ".$whereKeyword." order by building.name, user.name;");		
 	}
 	
+	public function findBuildingDetails($id){
+		// TODO
+	}
+	
 	
 	
 	//----- helper functions ------//
-	private function getUserNetworkIds(){
+	private function getUserNetworkIds($facebook){
 		// init array for all relatives
 		$networkIds = array();
-		
-		// add user itself to network
-		$networkIds[] = $facebook->getUser();
 		
 		// add friends to network
 		$friends = $facebook->api('/me/friends');
@@ -84,6 +89,6 @@ class Repository{
 
 
 // create new repository
-$repository = new Repository($mysql_config);
+$repository = new Repository($mysql_config, $facebook);
 
 ?>

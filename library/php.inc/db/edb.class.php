@@ -203,7 +203,7 @@ class edb{
 	   * @description 		closes mysql connection.
 	   */
 	public function __destruct(){
-		mysql_close($this->connection);
+		//mysql_close($this->connection);
 	}
 
 }
