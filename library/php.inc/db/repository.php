@@ -68,6 +68,15 @@ class Repository{
 		return $this->db->q("select building.name as building_name, user.name as user_name, user.id as user_id, building.id as building_id, building.*, user.* from Building building join User user on building.fk_user = user.id where (".$where." OR building.visibility = 2) ".$whereKeyword." order by building.name, user.name;");		
 	}
 	
+	public function selectBuilding($id = null){
+		$whereClause = "";
+		
+		if(isset($id)){
+			$whereClause = ' where id = '.$id; 
+		}
+		return $this->db->q("select * from Building". $whereClause);
+	}
+	
 	
 	
 	public function findBuildingDetails($id){

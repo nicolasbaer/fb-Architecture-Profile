@@ -86,6 +86,18 @@ function searchControlPanel($keyword = null){
 
 }
 
+function getModel($id = null){
+	
+	global $repository;
+	global $facebook;
+
+	//building information as assoc array
+	$building = $repository->selectBuilding($id);
+
+	return json_encode($building);
+	
+}
+
 
 
 
