@@ -60,7 +60,6 @@ function searchControlPanel($keyword = null){
 	global $repository;
 	global $facebook;
 
-	
 	$myBuildings = $repository->findAllBuildingsByUser($facebook->getUser(), $keyword);
 	$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
 	
@@ -76,12 +75,9 @@ function searchControlPanel($keyword = null){
 	foreach($otherBuildings as $building){
 		$outputOtherBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
 	}
-	
-	
-	$output['mybuildings'] = $outputMyBuildings;
-	$output['otherbuildings'] = $outputOtherBuildings;
-	
-	return $output;
+
+		
+	return array('otherbuildings' => $outputOtherBuildings, 'mybuildings' => $outputMyBuildings);
 	
 
 }
@@ -94,7 +90,7 @@ function getModel($id = null){
 	//building information as assoc array
 	$building = $repository->selectBuilding($id);
 
-	return json_encode($building);
+	return $building;
 	
 }
 

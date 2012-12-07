@@ -90,7 +90,6 @@
                             <?php 
                   			
 								$buildings = $repository->findAllBuildingsByUser($facebook->getUser());
-								
 								foreach($buildings as $building){
 									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
 								}

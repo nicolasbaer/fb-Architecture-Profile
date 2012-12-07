@@ -17,6 +17,7 @@ class Repository{
 	function __construct($mysql_config){
 		// connect to database
 		$this->db = new edb($mysql_config);
+		$this->db->s('SET CHARACTER SET utf8');
 	}
 
 	//----- user queries -----//
@@ -38,9 +39,10 @@ class Repository{
 	public function findAllBuildingsByUser($fbId, $keyword = null){
 		$whereClause = "";
 		
-		if(isset($keyword) && !empty($keyword)){
-			$whereClause = ' and building.name like "%'.$keyword.'%"'; 
+		if(isset($keyword) && $keyword != "" && !empty($keyword)){
+			$whereClause = ' and (building.name like "%'.$keyword.'%" or user.name like "%'.$keyword.'%") '; 
 		}
+
 		return $this->db->q("select building.name as building_name, user.name as user_name, user.id as user_id, building.id as building_id, user.*, building.* from Building building left join User user on user.id = building.fk_user where building.fk_user = '".$fbId."' ". $whereClause);
 	}
 	
@@ -54,16 +56,15 @@ class Repository{
 			if(!$first){
 				$where .= ' OR ';
 			} else{
-				$frist = false;
+				$first = false;
 			}
-			$where = " building.fk_user = '".$id."' ";
+			$where .= " building.fk_user = '".$id."' ";
 		}
 		
 		$whereKeyword = "";
-		if(isset($keyword) && $keyword != ""){
+		if(isset($keyword) && $keyword != "" && !empty($keyword)){
 			$whereKeyword = " AND (building.name like '%".$keyword."%' OR user.name like '%".$keyword."%') ";
 		}
-		
 		
 		return $this->db->q("select building.name as building_name, user.name as user_name, user.id as user_id, building.id as building_id, building.*, user.* from Building building join User user on building.fk_user = user.id where (".$where." OR building.visibility = 2) ".$whereKeyword." order by building.name, user.name;");		
 	}
