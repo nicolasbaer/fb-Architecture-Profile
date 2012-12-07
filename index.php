@@ -57,6 +57,8 @@
 	
 		<!-- include control panel -->
 		<?php require_once('./library/php.inc/control.inc.php');?>
+		
+		<div id="altitude"><p>Current altitude: N/A<br />Max altitude: N/A</p></div> 
 	
 	</body>
 </html>

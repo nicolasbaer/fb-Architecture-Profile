@@ -16,7 +16,9 @@ function initCallback(pluginInstance) {
     ge = pluginInstance;
     ge.getWindow().setVisibility(true);
     visShow();
-    
+	//ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
+    //ge.getLayerRoot().enableLayerById(ge.LAYER_BUILDINGS, true);
+	//ge.getLayerRoot().enableLayerById(ge.LAYER_TREES, true);
     // create the buttons
     //createNativeHTMLButton(100, 100, 210, 40); // x, y, width, height
     //createScreenOverlayButton(100, 200, 210, 40); // x, y, width, height
@@ -24,7 +26,21 @@ function initCallback(pluginInstance) {
     //addEntryToMenu("entry1", "#");
     //addEntryToMenu("entry2", "#");
 	setStartPosition();
+	//goToPosition(46.584207, 7.754322);
 	addPlacemark();
+	
+
+// Listen to the mousemove event on the globe.
+google.earth.addEventListener(ge.getGlobe(), 'mousemove', recordAltitude);
+}
+
+function recordAltitude(event) {
+var maxAlt = -1000000;
+   var currentAlt = event.getAltitude();
+   maxAlt = Math.max(maxAlt, currentAlt);
+   document.getElementById('altitude').innerHTML =
+      '<p>Current altitude: ' + currentAlt + '<br />Max altitude: '
+      + maxAlt + '</p>';
 }
 
 function setStartPosition(){
@@ -55,6 +71,22 @@ function addKmlFromUrl(kmlUrl) {
   	
 }
 
+function goToPosition(latitude, longitude){
+var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+
+// Set new latitude and longitude values.
+lookAt.setLatitude(latitude);
+lookAt.setLongitude(longitude);
+
+// Update the view in Google Earth.
+ge.getView().setAbstractView(lookAt);
+// Zoom out to twice the current range.
+lookAt.setRange(lookAt.getRange() / 10000);
+
+// Update the view in Google Earth.
+ge.getView().setAbstractView(lookAt);
+}
+
 function addPlacemark(){
 var counter = 0;
 
@@ -75,8 +107,8 @@ var la = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 var point = ge.createPoint('');
 //point.setLatitude(la.getLatitude());
 //point.setLongitude(la.getLongitude());
-point.setLatitude(46.584207);
-point.setLongitude(7.754322);
+point.setLatitude(46.7909618212385);
+point.setLongitude(8.162254982382917);
 placemark.setGeometry(point);
 //var balloon = ge.createHtmlStringBalloon('');
 //balloon.setFeature(placemark);
@@ -102,6 +134,7 @@ counter++;
 //  balloon.setContentString(content);
 //  ge.setBalloon(balloon);
 //});
+google.earth.addEventListener(ge.getGlobe(), 'mouseover', function(event) { log("Chlick");});
 google.earth.addEventListener(ge, 'balloonopening', function(event) {
 event.preventDefault();
 // sometimes event.preventDefault() doesn't work so use the following line instead (uncomment it obviously)
@@ -116,11 +149,18 @@ var placemark_desc_active = placemark.getBalloonHtmlUnsafe();
 var content = 'test1';
 var balloon = ge.createHtmlStringBalloon('');
 balloon.setFeature(placemark);
+//balloon.setContentString('abc');
 /*balloon.setContentString(
       '<a href="#" onclick="alert(\'Running some JavaScript!\');">Alert!</a>');*/
 balloon.setContentString(
       '<a href="#" onclick="addKmlFromUrl(\'http://demo.creativecode.ch/sampleKML.church.kml\');">Set the church!</a>');
-//balloon.setContentString(content);
+//balloon.setContentString(
+//		'<iframe src="http://www.yahoo.com" frameborder="0" scrolling="auto" height="500" width="600"></iframe>');
+//      '<iframe src="http://www.facebook.com"></iframe>');
+//balloon.setContentString(
+//      '<script>(function(d){var js, id = "facebook-jssdk", ref = d.getElementsByTagName("script")[0];if (d.getElementById(id)) {return;}js = d.createElement("script"); js.id = id; js.async = true;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; ref.parentNode.insertBefore(js, ref); }(document)); </script>');
+        
+
 ge.setBalloon(balloon);
 // Do something with the info
 
@@ -128,6 +168,7 @@ ge.setBalloon(balloon);
 }
 function visShow() {
   ge.getNavigationControl().setVisibility(ge.VISIBILITY_SHOW);
+  //ge.setOverviewMapVisibility();
 }
 
 
