@@ -25,23 +25,59 @@ function initCallback(pluginInstance) {
     //createNativeHTMLMenu(100, 210, 200); // x, width, height
     //addEntryToMenu("entry1", "#");
     //addEntryToMenu("entry2", "#");
-	setStartPosition();
+	//setStartPosition();
 	//goToPosition(46.584207, 7.754322);
-	addPlacemark();
-	
-
+	//addPlacemark();
+	setKmlAndPlacemark("http://demo.creativecode.ch/sampleKML.church.kml", 46.7909618212385, 8.162254982382917, "test");
 // Listen to the mousemove event on the globe.
-google.earth.addEventListener(ge.getGlobe(), 'mousemove', recordAltitude);
+//google.earth.addEventListener(ge.getGlobe(), 'mousemove', recordAltitude);
 }
 
-function recordAltitude(event) {
+function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
+var link = ge.createLink('');
+  	link.setHref(kmlUrl);
+
+  	var networkLink = ge.createNetworkLink('');
+  	networkLink.setLink(link);
+  	networkLink.setFlyToView(true);
+
+  	ge.getFeatures().appendChild(networkLink);
+	
+	var counter = 0;
+
+var placemark = ge.createPlacemark('');
+placemark.setName("placemark" + counter);
+ge.getFeatures().appendChild(placemark);
+
+// Create style map for placemark
+var icon = ge.createIcon('');
+icon.setHref('http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
+var style = ge.createStyle('');
+style.getIconStyle().setIcon(icon);
+placemark.setStyleSelector(style);
+
+// Create point
+var la = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+var point = ge.createPoint('');
+
+point.setLatitude(46.7909618212385);
+point.setLongitude(8.162254982382917);
+placemark.setGeometry(point);
+
+counter++;
 var maxAlt = -1000000;
+function recordAltitude(event) {
+
    var currentAlt = event.getAltitude();
    maxAlt = Math.max(maxAlt, currentAlt);
    document.getElementById('altitude').innerHTML =
       '<p>Current altitude: ' + currentAlt + '<br />Max altitude: '
       + maxAlt + '</p>';
 }
+google.earth.addEventListener(placemark, 'mousemove', recordAltitude);
+}
+
+
 
 function setStartPosition(){
 var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
@@ -134,7 +170,7 @@ counter++;
 //  balloon.setContentString(content);
 //  ge.setBalloon(balloon);
 //});
-google.earth.addEventListener(ge.getGlobe(), 'mouseover', function(event) { log("Chlick");});
+//google.earth.addEventListener(ge.getGlobe(), 'mouseover', function(event) { log("Chlick");});
 google.earth.addEventListener(ge, 'balloonopening', function(event) {
 event.preventDefault();
 // sometimes event.preventDefault() doesn't work so use the following line instead (uncomment it obviously)
