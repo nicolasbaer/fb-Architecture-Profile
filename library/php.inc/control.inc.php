@@ -7,7 +7,7 @@
 	
 	
 
-	function insertModelListItem($title, $architect, $userId) {
+	function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude) {
 		
 		echo '<div class="row-fluid" id="module_item_">
                         <div class="span2">
@@ -19,7 +19,7 @@
 '.$architect.'</div>
                 <div class="span4">
                            <div class="btn-group">
-                              <a class="btn" href="#"><i class="icon-eye-open icon-black"></i></a>
+                              <a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
                               <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Fly to Model</a></li>
@@ -57,26 +57,6 @@
 
     <div id="collapseOne" class="accordion-body collapse">
         <div class="accordion-inner" id="menu_content">                    
-            
-                
-            <!-- LOADED MODELS SECTION STARTS-->
-            <div class="accordion-group">
-            <div class="accordion-heading content-accordion">
-                <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                    Loaded Models
-                </a>
-            </div>
-            <div id="collapseTwo" class="accordion-body collapse content-accordion">
-            <div class="accordion-inner content-accordion-inner">
-
-            <div class="scroll-section" id="loaded_list">
-
-            
-			  No models loaded at this time.</div>
-            </div>
-            </div>
-            </div>
-           <!-- LOADED MODELS SECTION ENDS-->
                 
                 <!-- MY MODELS SECTION STARTS-->
                 <div class="accordion-group">
@@ -94,7 +74,7 @@
                   			
 								$buildings = $repository->findAllBuildingsByUser($facebook->getUser());
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
 								}
 							
 							?>
@@ -122,7 +102,7 @@
 								$buildings = $repository->findAllBuildingsVisibleToUser($facebook);
 								
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
 								}
 							
 							?>

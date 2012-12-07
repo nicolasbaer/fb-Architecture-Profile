@@ -1,30 +1,30 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <kml xmlns='http://earth.google.com/kml/2.1'>
 <Folder>
-    <name>model</name>
-    <description><![CDATA[Created with <a href="http://sketchup.google.com/">Google SketchUp 7.0.1</a>]]></description>
+    <name>warehouse_model</name>
+    <description><![CDATA[Created with <a href="http://sketchup.google.com/">Google 3D Warehouse 1.0</a>]]></description>
     <DocumentSource>SketchUp</DocumentSource>
 <visibility>1</visibility>
 <LookAt>
-<heading>153.699</heading>
-<tilt>42.695</tilt>
-<latitude>47.40865781756175</latitude>
-<longitude>8.508116027774005</longitude>
-<range>899.1232227939602</range>
-<altitude>655.4594484070324</altitude>
+<heading>339.981</heading>
+<tilt>83.7801</tilt>
+<latitude>47.38572679652688</latitude>
+<longitude>8.517826939888455</longitude>
+<range>208.2463849994438</range>
+<altitude>42.33998404566081</altitude>
 </LookAt>
 <Folder>
 <name>Tour</name>
 <Placemark>
-<name><![CDATA[Home]]></name>
+<name><![CDATA[Camera]]></name>
 <visibility>1</visibility>
 <LookAt>
-<heading>328.083</heading>
-<tilt>74.7378</tilt>
-<latitude>47.40817633995358</latitude>
-<longitude>8.50890161418687</longitude>
-<range>24.5393734268834</range>
-<altitude>8.678606946597895</altitude>
+<heading>339.981</heading>
+<tilt>83.7801</tilt>
+<latitude>47.38572679652688</latitude>
+<longitude>8.517826939888455</longitude>
+<range>208.2463849994438</range>
+<altitude>42.33998404566081</altitude>
 </LookAt>
 </Placemark>
 </Folder>
@@ -36,9 +36,9 @@
     <Model>
         <altitudeMode>relativeToGround</altitudeMode>
         <Location>
-            <longitude>8.508880352446</longitude>
-            <latitude>47.408114304518</latitude>
-            <altitude>-25.414306804636</altitude>
+            <longitude>8.518046062410</longitude>
+            <latitude>47.385777806623</latitude>
+            <altitude>0.000000000000</altitude>
         </Location>
         <Orientation>
             <heading>-0.000000000000</heading>
@@ -51,7 +51,7 @@
             <z>1.0</z>
         </Scale>
         <Link>
-            <href>models/model.dae</href>
+            <href>models/warehouse_model.dae</href>
         </Link>
     </Model>
   </Placemark></Folder>
