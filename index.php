@@ -50,7 +50,7 @@
 		
 	</head>
 
-	<body onload='init()'>
+	<body>
 	
 		<!-- create google earth container -->
 		<div id="map3d" style="height: 100%; width: 100%;"></div>
