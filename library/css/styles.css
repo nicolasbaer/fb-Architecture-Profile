@@ -1,8 +1,10 @@
 /* Styles.css */
+
+/**************************** styles of control panel *************************/
 #menu_well {
 position:absolute;
 bottom:0px;
-left:60px;
+left:30px;
 opacity: 0.85;
 }
 
@@ -55,3 +57,91 @@ td, th {
  padding-top: 4px;
 }
 
+/**************************** styles of details panel *************************/
+
+#details_well {
+ position:absolute;
+ bottom:0px;
+ right:30px;
+ opacity: 0.85;
+
+}
+
+#details_well:hover {
+ opacity:1.0;
+}
+
+#toggle_button_details {
+	margin-top:-5px;
+	
+}
+
+
+#details-accordion {
+ margin-bottom: 0;
+}
+
+#details-header {
+ margin-top:10px;
+ font-size:100%
+}
+
+#details-tabs {
+ /*height:300px; */
+ margin-bottom:10px;
+}
+
+#comments-list {
+ width: 400px;
+}
+
+.thumb-for-list {
+ /*width: 100%;*/
+}
+
+#comment-string {
+ 
+}
+
+.comment_thumbnail_span {
+    margin-right: 15px;
+}
+
+#submit-button {
+ margin-top:10px;
+}
+
+.fb-like {
+ width:105px;
+ height:21px;
+ margin-top:15px;
+ overflow:auto;
+ position:relative;
+
+}
+
+.comment {
+ margin-bottom:-12px;
+}
+
+#additional-data-list{
+ width: 400px;
+ height: 291px;
+}
+
+#details-collapse {
+ background-color:white;
+}
+
+.modal-backdrop:hover {
+	z-index:0;
+}
+
+#myModal{
+	
+}
+
+#other-models-list {
+ width: 400px;
+ height: 190px;
+}

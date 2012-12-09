@@ -32,9 +32,12 @@
                     </div>';
 		
 	}
+	
+
 
 
 ?>
+
 
 
 <div class="well well-small" style="bottom" id="menu_well">
@@ -44,8 +47,8 @@
             <input type="text" class="search-query" placeholder="enter name" name="search" id="search">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
                 <!-- onclick="return false" prevents page reload -->
-                <button class="btn" id="toggle_button" onclick="changeToggleButtonIcon()">
-                    <i class="icon-chevron-up" id="toggle_button_icon"></i>
+                <button class="btn" id="toggle_button_control" onclick="changeToggleButtonIcon('toggle_button_icon_control')">
+                    <i class="icon-chevron-up" id="toggle_button_icon_control"></i>
                 </button>
             </a>
         </form>
