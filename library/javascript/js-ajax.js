@@ -31,9 +31,8 @@ $(document).ready(function() {
 								
 						
 							}).done(function( content ) {
-								
 								//content is encoded as JSON object
-							
+								//alert(content);
 								
 								var obj = jQuery.parseJSON(content);
 								

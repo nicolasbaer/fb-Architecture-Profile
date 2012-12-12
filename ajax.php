@@ -25,7 +25,7 @@ require_once('./library/php.inc/fb-security.php');
 	
 	
 
-function insertModelListItem($title, $architect, $userId) {
+function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude) {
 	
 	$return = '<div class="row-fluid" id="module_item_">
                     <div class="span2">
@@ -37,7 +37,7 @@ function insertModelListItem($title, $architect, $userId) {
 '.$architect.'</div>
             <div class="span4">
                        <div class="btn-group">
-                          <a class="btn" href="#"><i class="icon-eye-open icon-black"></i></a>
+                          <a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
                           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li><a href="#">Fly to Model</a></li>
@@ -60,28 +60,24 @@ function searchControlPanel($keyword = null){
 	global $repository;
 	global $facebook;
 
-	
 	$myBuildings = $repository->findAllBuildingsByUser($facebook->getUser(), $keyword);
 	$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
 	
 	$outputMyBuildings = "";
 	 
 	foreach($myBuildings as $building){
-		$outputMyBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
+		$outputMyBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
 	}
 	
 	
 	$outputOtherBuildings = "";
 	
 	foreach($otherBuildings as $building){
-		$outputOtherBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id']);
+		$outputOtherBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
 	}
-	
-	
-	$output['mybuildings'] = $outputMyBuildings;
-	$output['otherbuildings'] = $outputOtherBuildings;
-	
-	return $output;
+
+		
+	return array('otherbuildings' => $outputOtherBuildings, 'mybuildings' => $outputMyBuildings);
 	
 
 }
@@ -94,7 +90,7 @@ function getModel($id = null){
 	//building information as assoc array
 	$building = $repository->selectBuilding($id);
 
-	return json_encode($building);
+	return $building;
 	
 }
 
