@@ -75,6 +75,10 @@ function recordAltitude(event) {
       + maxAlt + '</p>';
 }
 google.earth.addEventListener(placemark, 'mousemove', recordAltitude);
+google.earth.addEventListener(ge, 'balloonopening', function(event) {
+event.preventDefault();
+
+});
 }
 
 
