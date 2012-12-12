@@ -7,29 +7,44 @@
 	
 	
 
-	function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude, $manageableModel) {
+	function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude) {
+		
+		global $facebook;
+        $fbUser=$facebook->getUser();
 		
 		$manageButton="";
-		if ($manageableModel) {
+		if ($fbUser==$userId) {
 			
 			$manageButton='<a class="btn" onClick="#"><i class="icon-wrench icon-black"></i></a>"';
 		}
+		$userData = $facebook->api($userId);
 		
 		echo '<div class="row-fluid" id="module_item_">
                   <div class="span2">
-                      <div class="thumbnail thumb_li">
-                           <img src="http://graph.facebook.com/'.$userId.'/picture" />
-                      </div>
+
+                           <a href='.$userData['link'].' class="thumbnail thumb_li" target="_top">
+                                 <img src="http://graph.facebook.com/'.$userId.'/picture" /> 
+                           </a>
+                   
                   </div>
-                  <div class="span6">'.$title.'<br />'.$architect.
-                  '</div>
+                  <div class="span6">'.$title.'<br />
+                  <a href='.$userData['link'].' target="_top">
+                  '.$architect.'
+                  </a>
+                  </div>
                   <div class="span4">
                      <div class="btn-group pull-right">'
                            	.$manageButton.
                             '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
                      </div> <!-- /btn group-->
                   </div>
-             </div>';
+             </div>
+             <!-- separator between list entries sterts -->
+             
+             <ul class="nav nav-list">
+                 <li class="divider"></li>
+             </ul>
+             <!-- separator between list entries ends-->';
 		
 	}
 	
@@ -74,7 +89,7 @@
                   			
 								$buildings = $repository->findAllBuildingsByUser($facebook->getUser());
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], true);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
 								}
 							
 							?>
@@ -102,7 +117,7 @@
 								$buildings = $repository->findAllBuildingsVisibleToUser($facebook);
 								
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], false);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
 								}
 							
 							?>

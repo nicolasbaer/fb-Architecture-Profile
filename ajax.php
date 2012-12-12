@@ -26,28 +26,44 @@ require_once('./library/php.inc/fb-security.php');
 	
 
 function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude) {
+
+    global $facebook;
+        $fbUser=$facebook->getUser();
+		
+		$manageButton="";
+		if ($fbUser==$userId) {
+			
+			$manageButton='<a class="btn" onClick="#"><i class="icon-wrench icon-black"></i></a>"';
+		}
+		$userData = $facebook->api($userId);
+		
+		$return='<div class="row-fluid" id="module_item_">
+                  <div class="span2">
+
+                           <a href='.$userData['link'].' class="thumbnail thumb_li" target="_top">
+                                 <img src="http://graph.facebook.com/'.$userId.'/picture" /> 
+                           </a>
+                   
+                  </div>
+                  <div class="span6">'.$title.'<br />
+                  <a href='.$userData['link'].' target="_top">
+                  '.$architect.'
+                  </a>
+                  </div>
+                  <div class="span4">
+                     <div class="btn-group pull-right">'
+                           	.$manageButton.
+                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
+                     </div> <!-- /btn group-->
+                  </div>
+             </div>
+             <!-- separator between list entries sterts -->
+             
+             <ul class="nav nav-list">
+                 <li class="divider"></li>
+             </ul>
+             <!-- separator between list entries ends-->';
 	
-	$return = '<div class="row-fluid" id="module_item_">
-                    <div class="span2">
-    						<div class="thumbnail thumb_li">
-                                             <img src="http://graph.facebook.com/'.$userId.'/picture" />
-                                                </div>
-                       </div>
-                    <div class="span6">'.$title.'<br />
-'.$architect.'</div>
-            <div class="span4">
-                       <div class="btn-group">
-                          <a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
-                          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="#">Fly to Model</a></li>
-                            <li><a href="#">Unload Model</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Manage Model</a></li>
-                          </ul>
-                        </div> <!-- /btn group-->
-                    </div>
-                </div>';
 				
 		return $return;
 	
