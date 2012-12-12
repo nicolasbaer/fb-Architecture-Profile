@@ -7,29 +7,29 @@
 	
 	
 
-	function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude) {
+	function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude, $manageableModel) {
+		
+		$manageButton="";
+		if ($manageableModel) {
+			
+			$manageButton='<a class="btn" onClick="#"><i class="icon-wrench icon-black"></i></a>"';
+		}
 		
 		echo '<div class="row-fluid" id="module_item_">
-                        <div class="span2">
-        						<div class="thumbnail thumb_li">
-                                                 <img src="http://graph.facebook.com/'.$userId.'/picture" />
-                                                    </div>
-                           </div>
-                        <div class="span6">'.$title.'<br />
-'.$architect.'</div>
-                <div class="span4">
-                           <div class="btn-group">
-                              <a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
-                              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Fly to Model</a></li>
-                                <li><a href="#">Unload Model</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Manage Model</a></li>
-                              </ul>
-                            </div> <!-- /btn group-->
-                        </div>
-                    </div>';
+                  <div class="span2">
+                      <div class="thumbnail thumb_li">
+                           <img src="http://graph.facebook.com/'.$userId.'/picture" />
+                      </div>
+                  </div>
+                  <div class="span6">'.$title.'<br />'.$architect.
+                  '</div>
+                  <div class="span4">
+                     <div class="btn-group pull-right">'
+                           	.$manageButton.
+                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
+                     </div> <!-- /btn group-->
+                  </div>
+             </div>';
 		
 	}
 	
@@ -74,7 +74,7 @@
                   			
 								$buildings = $repository->findAllBuildingsByUser($facebook->getUser());
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], true);
 								}
 							
 							?>
@@ -102,7 +102,7 @@
 								$buildings = $repository->findAllBuildingsVisibleToUser($facebook);
 								
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], false);
 								}
 							
 							?>
