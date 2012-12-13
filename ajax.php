@@ -118,6 +118,12 @@ function getBuildingDetails($id = null){
 			$details['rating_overall'] = false;
 		}
 		
+		//print_r($details['building']);
+		$buildings = $details['building'];
+		$building = $buildings[0];
+		//echo "user = ". $building['user_id'];
+		$details['rating_details'] = calculateRatingOfUser($id, $details['building'][0]['user_id']);
+		
 		return $details;
 	}
 	
@@ -178,34 +184,51 @@ function saveRating($rating = null, $buildingId = null){
 			$repository->updateRating($existingRating);
 		}
 		
-		// recalculate the ranking
-		$r = array();
-		$ratings = $repository->findRatingsByBuilding($buildingId);
-		if($ratings){
-			$r['overall_building'] = 0;
-			foreach($ratings as $rating){
-				$number = $rating['points'];
-				$r['overall_building'] += $number;
-			}
-			$r['overall_building'] /= sizeof($ratings);
-			$r['overall_building_amount'] = sizeof($ratings);
-		}
-		
-		$userRatings = $repository->findRatingsByUser($facebook->getUser());
-		if($userRatings){
-			$r['designer'] = 0;
-			foreach($userRatings as $ur){
-				$r['designer'] += $ur;
-			}
-			
-			$r['designer'] /= sizeof($userRatings);
-			$r['designer_amount'] = sizeof($userRatings);
-		}
+		$building = $repository->findBuildingById($buildingId);
+		$r = calculateRatingOfUser($buildingId, $building['fk_user']);
 		
 		
 		return $r;
 	}
 	
+}
+
+
+function calculateRatingOfUser($buildingId, $userId){
+	global $repository;
+	
+	// recalculate the ranking
+	$r = array();
+	$ratings = $repository->findRatingsByBuilding($buildingId);
+	if($ratings){
+		$r['overall_building'] = 0;
+		foreach($ratings as $rating){
+			$number = $rating['points'];
+			$r['overall_building'] += $number;
+		}
+		$r['overall_building'] /= sizeof($ratings);
+		$r['overall_building_amount'] = sizeof($ratings);
+	} else{
+		$r['overall_building_amount'] = 0;
+		$r['overall_building'] = 0;
+	}
+	
+	$userRatings = $repository->findRatingsByUser($userId);
+	
+	if($userRatings){
+		$r['designer'] = 0;
+		foreach($userRatings as $ur){
+			$r['designer'] += $ur['points'];
+		}
+		
+		$r['designer'] /= sizeof($userRatings);
+		$r['designer_amount'] = sizeof($userRatings);
+	} else{
+		$r['designer'] = 0;
+		$r['designer_amount'] = 0;
+	}
+	
+	return $r;
 }
 
 ?>
