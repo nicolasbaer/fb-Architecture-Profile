@@ -53,7 +53,7 @@ function insertModelListItem($title, $architect, $userId, $kml, $latitude, $long
                   <div class="span4">
                      <div class="btn-group pull-right">'
                            	.$manageButton.
-                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
+                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\');viewBuildingDetails('.$buildingId.');"><i class="icon-eye-open icon-black"></i></a>
                      </div> <!-- /btn group-->
                   </div>
              </div>
@@ -123,6 +123,12 @@ function getBuildingDetails($id = null){
 		$building = $buildings[0];
 		//echo "user = ". $building['user_id'];
 		$details['rating_details'] = calculateRatingOfUser($id, $details['building'][0]['user_id']);
+		
+		// find rating of current user
+		$details['current_user_rating'] = $repository->findRating($id, $facebook->getUser());
+		
+		// find other buildings of designer
+		
 		
 		return $details;
 	}

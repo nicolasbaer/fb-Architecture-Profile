@@ -194,12 +194,12 @@ $('.fixedVersion .modal').appendTo($("body"));
                                 </span>
                                 <span>
                                     <div class="pull-right">    
-                                        <div class="btn-group pull-right" data-toggle="buttons-radio">
-                                             <button type="button" class="btn  btn-danger" onClick="saveRating(1);">1</button>
-                                              <button type="button" class="btn  btn-warning" onClick="saveRating(2);">2</button>
-                                              <button type="button" class="btn  btn-primary" onClick="saveRating(3);">3</button>
-                                              <button type="button" class="btn  btn-info" onClick="saveRating(4);">4</button>
-                                              <button type="button" class="btn  btn-success" onClick="saveRating(5);">5</button>
+                                        <div class="btn-group pull-right" data-toggle="buttons-radio" id="user-rating-buttons-pane">
+                                             <button type="button" class="btn  btn-danger user-rating-buttons" onClick="saveRating(1);" value="1">1</button>
+                                              <button type="button" class="btn  btn-warning user-rating-buttons" onClick="saveRating(2);" value="2">2</button>
+                                              <button type="button" class="btn  btn-primary user-rating-buttons" onClick="saveRating(3);" value="3">3</button>
+                                              <button type="button" class="btn  btn-info user-rating-buttons" onClick="saveRating(4);" value="4">4</button>
+                                              <button type="button" class="btn  btn-success user-rating-buttons" onClick="saveRating(5);" value="5">5</button>
                                         </div>                                
                                         <br/>
                                         <span id="fb-like-and-post">
@@ -250,14 +250,14 @@ $('.fixedVersion .modal').appendTo($("body"));
                             <div class="row-fluid comment">
                                 <span>
                                     <div class="span3 comment_thumbnail_span">
-                                        <div class="thumbnail thumb-for-list">
+                                        <div class="thumbnail thumb-for-list" id="designer-image">
                                             <img src="http://placehold.it/160x120" />
                                         </div>
                                        </div>
                                    </span>
                                    <span>
                                     <div>
-                                        <span>
+                                        <span id="designer-name">
                                             Name of Designer
                                         </span>
                                         <span>
