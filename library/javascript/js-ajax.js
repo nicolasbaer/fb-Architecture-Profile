@@ -6,14 +6,24 @@ var currentBuildingId;
 $(document).ready(function() {
 
 						var timer;
-
+						var isPanelActive=false;
 						// Model / Architect Search
 						$("#search").keyup(function() {
+							
+								if(isPanelActive==false) {
+									
+									$(".collapse").removeClass('collapse');
+									changeToggleButtonIcon('toggle_button_icon_control');
+									
+									isPanelActive = true;
+									
+								
+								}
 								
 								clearTimeout(timer);
 								timer = setTimeout(function(){
 									performSearch();	  
-								}, 500);
+								}, 200);
 						  
 	  
 							//clearTimeout(timer);
@@ -82,7 +92,7 @@ function getBuildingDetails(id){
 		}
 	}).done(function( content ) {	
 		//content is encoded as JSON object
-		alert(content);
+		//alert(content);
 		var obj = jQuery.parseJSON(content);
 		
 		buildBuildingDetails(obj);
@@ -126,7 +136,7 @@ function saveRating(rating){
 		}
 	}).done(function( content ) {	
 		//content is encoded as JSON object
-		alert(content);
+		//alert(content);
 		var obj = jQuery.parseJSON(content);
 		updateRating(obj);
 	});

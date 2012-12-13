@@ -19,6 +19,8 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta property="og:title" content="ScenoGraph"/>
+		<meta property="og:url" content="http://www.archipublic.com"/>
 		<title>Sceno Graph</title>
 		
 		<!-- jquery -->
@@ -45,6 +47,7 @@
 			<!-- facebook login redirect -->
 			<script type="text/javascript">
 		  		window.top.location = '<?php echo $fb_oauth_url ?>';
+									
 			</script>
 		<?php endif; ?>
 		

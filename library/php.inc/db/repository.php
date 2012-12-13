@@ -137,15 +137,28 @@ class Repository{
 
 			// add friends to network
 			$friends = $facebook->api('/me/friends?fields=id');
+			$where = "";
 			if($friends){
+				$first = 0;
 				foreach($friends['data'] as $friend){
-					$networkIds[] = $friend['id'];
+					//$networkIds[] = $friend['id'];
+					if($first==1){
+						$where .= " OR u.id = ".$friend['id'] ." ";
+					}else{
+						$where .= " u.id = ".$friend['id'] ." ";
+						$first = 1;
+					}
 				}
 			}
-			
+			$users = $this->db->q("select * from User u where ". $where);
+			if($users){
+				foreach($users as $u){
+					$networkIds[] = $u['id'];
+				}
+			}
+
 			$_SESSION['USER_NETWORK'] = $networkIds;
 		}
-		
 		
 		return $_SESSION['USER_NETWORK'];
 	}
