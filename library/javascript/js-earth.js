@@ -4,6 +4,8 @@ google.load("earth", "1");
 
 // init google engine variable
 var ge = null;
+var placemarkArray = new Array();
+
 
 // init google earth function
 // called on pageload
@@ -51,7 +53,33 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 	//flyToModel(latitude, longitude);
 	
 	// create point
-	// Check here if point already exists.
+	var point = ge.createPoint('');
+	point.setLatitude(latitude);
+	point.setLongitude(longitude);
+	var check = false;
+	for (var i = 0; i < placemarkArray.length; i++){
+		if (placemarkArray.get(i) == point){
+			check = true;
+		}
+	}
+	if (check == false){
+		pointArray.push(point);
+		var placemark = ge.createPlacemark('');
+		//placemark.setName("test");
+		ge.getFeatures().appendChild(placemark);
+
+		// Create style map for placemark
+		var icon = ge.createIcon('');
+		icon.setHref('http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
+		var style = ge.createStyle('');
+		style.getIconStyle().setIcon(icon);
+		placemark.setStyleSelector(style);
+
+		// Create point
+	
+		placemark.setGeometry(point);
+		// Check here if point already exists.
+	}
 }
 
 
