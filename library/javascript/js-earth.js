@@ -5,6 +5,7 @@ google.load("earth", "1");
 // init google engine variable
 var ge = null;
 var placemarkArray = new Array();
+var maxAlt = -1000000;
 
 
 // init google earth function
@@ -18,6 +19,7 @@ function initCallback(pluginInstance) {
     ge = pluginInstance;
     ge.getWindow().setVisibility(true);
     visShow();
+	//setKmlAndPlacemark('http://www.archipublic.com/models/4/doc.kml',47.3857,8.51783, "test");
 }
 
 function flyToModel(latitude, longitude){
@@ -61,7 +63,7 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 	}
 	// create point
 	if (check == false){
-		pointArray.push(kmlUrl);
+		placemarkArray.push(kmlUrl);
 		var placemark = ge.createPlacemark('');
 		//placemark.setName("test");
 		ge.getFeatures().appendChild(placemark);
@@ -79,6 +81,16 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 		point.setLongitude(longitude);
 		placemark.setGeometry(point);
 		
+		// Define what happens when a mousemove is detected on the globe.
+		function recordAltitude(event) {
+		var currentAlt = event.getAltitude();
+		maxAlt = Math.max(maxAlt, currentAlt);
+		document.getElementById('altitude').innerHTML = '<p>Current altitude: ' + currentAlt + '<br />Max altitude: '+ maxAlt + '</p>';
+		}
+
+		// Listen to the mousemove event on the globe.
+		//google.earth.addEventListener(ge.getGlobe(), 'mousemove', recordAltitude);
+		google.earth.addEventListener(placemark, 'mousemove', recordAltitude);
 	}
 }
 
