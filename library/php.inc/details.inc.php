@@ -20,9 +20,7 @@ $('.fixedVersion .modal').appendTo($("body"));
 </script>
 
 
-<header><h1>OH HAI I HAZ A HEADER</h1>
-<div id="fb-root"></div>
-</header>
+
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
@@ -260,14 +258,6 @@ $('.fixedVersion .modal').appendTo($("body"));
                                         <span id="designer-name">
                                             Name of Designer
                                         </span>
-                                        <span>
-                                            <small>
-                                                number of models: 
-                                            </small>
-                                        </span>
-                                        <span class="badge pull-right">
-                                            23
-                                        </span>
                                     </div>
                                     <div id="designer-average-rating">
                                         <span class="label label-info">
@@ -295,38 +285,7 @@ $('.fixedVersion .modal').appendTo($("body"));
                             <div class="scroll-section" id="other-models-list">
                                 <!-- First other model section starts -->
                                 <div class="row-fluid comment">
-                                    <div class="span3 comment_thumbnail_span">
-                                        <!-- here we need an image of the model -->
-                                        <div class="thumbnail thumb-for-list">
-                                            <a onclick="load-model-and-fly-to-model" href="#">
-                                                <img src="http://placehold.it/160x120" />
-                                            </a>
-                                        </div>
-                                       </div>
-                                    <div>
-                                        <span>
-                                            <a onclick="load-model-and-fly-to-model" href="#">
-                                                Titel of Model
-                                            </a>
-                                        </span>
-                                        <span>
-                                            <time>
-                                                <small>
-                                                    12-Dec-2012
-                                                </small>
-                                            </time>
-                                        </span>
-                                        <span class="badge badge-warning pull-right">
-                                            2
-                                        </span>                                        
-                                        <p id="comment-string">
-                                            <small>
-                                                Model description Model description Model description 
-                                                Model description Model description Model description 
-                                                Model description Model description Model description 
-                                            </small>
-                                        </p>
-                                    </div>
+                                    
                                 </div>
                                 <!-- First other model section ends -->
                                 <!-- separator between models starts-->
@@ -337,36 +296,7 @@ $('.fixedVersion .modal').appendTo($("body"));
                                 <!-- separator between models ends-->
                                 <!-- Second other model section starts -->
                                 <div class="row-fluid comment">                                    
-                                    <div class="span3 comment_thumbnail_span">
-                                        <!-- here we need an image of the model -->
-                                        <div class="thumbnail thumb-for-list">
-                                            <a onclick="load-model-and-fly-to-model" href="#">
-                                                <img src="http://placehold.it/160x120" />
-                                            </a>
-                                        </div>
-                                       </div>
-                                    <div>
-                                        <span>
-                                            <a onclick="load-model-and-fly-to-model" href="#">
-                                                Titel of Model
-                                            </a>
-                                        </span>
-                                        <span>
-                                            <time>
-                                                <small>
-                                                    12-Dec-2012
-                                                </small>
-                                            </time>
-                                        </span>
-                                        <span class="badge badge-info pull-right">
-                                            3
-                                        </span>                                        
-                                        <p id="comment-string">
-                                            <small>
-                                                Model description ...  
-                                            </small>
-                                        </p>
-                                    </div>                                    
+                                                                     
                                 </div>
                                 <!-- Second other model section ends -->                            
                             </div>

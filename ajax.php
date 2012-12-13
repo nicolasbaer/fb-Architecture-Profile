@@ -157,7 +157,7 @@ function saveComment($comment = null, $buildingId = null){
 		$c = array();
 		$c['fk_building'] = $buildingId;
 		$c['fk_user'] = $facebook->getUser();
-		$c['content'] = $comment;
+		$c['content'] = nl2br($comment);
 		$c['postdate'] = date('Y-m-d H:i:s');
 		
 		$repository->saveComment($c);

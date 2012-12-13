@@ -6,7 +6,7 @@ require_once(__ROOT__.'/library/config.php');
 require_once(__ROOT__.'/library/php.inc/db/repository.php');
 
 
-$facebook = new Facebook(array('appId'  => $fb_api_key,'secret' => $fb_app_secret));;
+$facebook = new Facebook(array('appId'  => $fb_api_key,'secret' => $fb_app_secret));
 
 // check if user is already authenticated
 if(!isset($_SESSION['IS_AUTHENTICATED']) && $facebook->getUser() > 0){

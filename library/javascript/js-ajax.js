@@ -23,7 +23,7 @@ $(document).ready(function() {
 								clearTimeout(timer);
 								timer = setTimeout(function(){
 									performSearch();	  
-								}, 500);
+								}, 200);
 						  
 	  
 							//clearTimeout(timer);
@@ -136,7 +136,7 @@ function saveRating(rating){
 		}
 	}).done(function( content ) {	
 		//content is encoded as JSON object
-		alert(content);
+		//alert(content);
 		var obj = jQuery.parseJSON(content);
 		updateRating(obj);
 	});
