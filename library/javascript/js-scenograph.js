@@ -24,6 +24,8 @@ function clearBuildingDetails(){
 	$('#overall-rating-value').empty();
 	$('#comments-list').empty();
 	$('#fb-like-button').empty();
+	$('#designer-name').empty();
+	$('#designer-image').empty();
 }
 
 function loadFbLike($, url){
@@ -73,15 +75,11 @@ function buildBuildingDetails(details){
 	// add average rating
 	updateRating(details.rating_details);
 	
-	/*
-	if(details.ratings.length == 0){
-		$('#overall-rating-number').append('no ratings yet');
-		$('#overall-rating-value').append('-');
-	} else{
-		$('#overall-rating-number').append('Rating of ' + details.ratings.length + ' Users');
-		$('#overall-rating-value').append(details.rating_overall);
-		$('#overall-rating-value').attr("class",getRatingStyleClass(details.rating_overall));;
-	}*/
+	// activate current user rating
+	currentUserPoints = details.current_user_rating.points;
+	if(currentUserPoints != null){
+		$('.user-rating-buttons[value="' + currentUserPoints + '"]').addClass("active");
+	}
 	
 	// add comments
 	if(details.comments.length == 0){
@@ -92,6 +90,10 @@ function buildBuildingDetails(details){
 			showComment(comment, true);
 		}
 	}
+	
+	// add current designer information
+	$('#designer-name').append(details.building[0].user_name);
+	$('#designer-image').append('<img src="http://graph.facebook.com/'+details.building[0].user_id+'/picture" />');
 
 	// update like button with URL to current model
 

@@ -30,6 +30,7 @@ function initCallback(pluginInstance) {
 	if(building_id!="" && building_id!=null) { 
 		
 		 loadModelFromURL(building_id);
+		 viewBuildingDetails(building_id);
 		
 	}
 	
