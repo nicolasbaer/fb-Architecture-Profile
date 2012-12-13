@@ -19,7 +19,20 @@ function initCallback(pluginInstance) {
     ge = pluginInstance;
     ge.getWindow().setVisibility(true);
     visShow();
+
 	//setKmlAndPlacemark('http://www.archipublic.com/models/4/doc.kml',47.3857,8.51783, "test");
+
+	// if a building ID is specified in the URL
+	// the building shall be loaded after google earth is ready
+	
+	var building_id = $.getUrlVar('building');
+	
+	if(building_id!="" && building_id!=null) { 
+		
+		 loadModelFromURL(building_id);
+		
+	}
+	
 }
 
 function flyToModel(latitude, longitude){
@@ -107,3 +120,21 @@ function failureCallback(object) {
 
 // load google engine after DOM is completed
 google.setOnLoadCallback(init);
+
+
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
+});

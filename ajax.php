@@ -63,7 +63,6 @@ function insertModelListItem($title, $architect, $userId, $kml, $latitude, $long
                  <li class="divider"></li>
              </ul>
              <!-- separator between list entries ends-->';
-	
 				
 		return $return;
 	
@@ -77,13 +76,14 @@ function searchControlPanel($keyword = null){
 	global $facebook;
 
 	$myBuildings = $repository->findAllBuildingsByUser($facebook->getUser(), $keyword);
-	$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
+	//$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
 	
 	$outputMyBuildings = "";
-	 
+
+	
 	foreach($myBuildings as $building){
 		$outputMyBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
-	}
+	} 
 	
 	
 	$outputOtherBuildings = "";
@@ -92,7 +92,7 @@ function searchControlPanel($keyword = null){
 		$outputOtherBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
 	}
 
-		
+
 	return array('otherbuildings' => $outputOtherBuildings, 'mybuildings' => $outputMyBuildings);
 	
 
