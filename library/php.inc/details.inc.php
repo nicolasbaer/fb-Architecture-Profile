@@ -256,16 +256,16 @@ $('.fixedVersion .modal').appendTo($("body"));
                                             23
                                         </span>
                                     </div>
-                                    <div>
+                                    <div id="designer-average-rating">
                                         <span class="label label-info">
                                             Average Rating
                                         </span>
                                         <span>
-                                            <small>
+                                            <small id="designer-average-rating-number">
                                                 based on X ratings
                                             </small>
                                         </span>
-                                        <span class="badge badge-success pull-right">
+                                        <span class="badge badge-success pull-right" id="designer-average-rating-value">
                                             5
                                         </span>
                                     </div>

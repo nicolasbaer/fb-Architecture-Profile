@@ -44,13 +44,17 @@ function buildBuildingDetails(details){
 		);
 	
 	// add average rating
+	updateRating(details.rating_details);
+	
+	/*
 	if(details.ratings.length == 0){
 		$('#overall-rating-number').append('no ratings yet');
 		$('#overall-rating-value').append('-');
 	} else{
 		$('#overall-rating-number').append('Rating of ' + details.ratings.length + ' Users');
 		$('#overall-rating-value').append(details.rating_overall);
-	}
+		$('#overall-rating-value').attr("class",getRatingStyleClass(details.rating_overall));;
+	}*/
 	
 	// add comments
 	if(details.comments.length == 0){
@@ -107,11 +111,52 @@ function showComment(comment, append){
 	}
 }
 
-
+// "overall_building":1,"overall_building_amount":1,"designer":1.5,"designer_amount":2}
 function updateRating(rating){
+	// update current building rating
+	$('#overall-rating-number').empty();
+	$('#overall-rating-value').empty();
+	if(rating.overall_building_amount == 0){
+		$('#overall-rating-number').append('no ratings yet');
+		$('#overall-rating-value').append('-');
+	} else{
+		$('#overall-rating-number').append('Rating of ' + rating.overall_building_amount + ' Users');
+		$('#overall-rating-value').append(rating.overall_building);
+		$('#overall-rating-value').attr("class",getRatingStyleClass(rating.overall_building));;
+	}
 	
-	
+	// update designer overall rating
+	//designer-average-rating-amount
+	$('#designer-average-rating-number').empty();
+	$('#designer-average-rating-value').empty();
+	if(rating.designer_amount == 0){
+		$('#designer-average-rating-number').append('no ratings yet');
+		$('#designer-average-rating-value').append('-');
+	} else{
+		$('#designer-average-rating-number').append('Rating of ' + rating.designer_amount + ' Users');
+		$('#designer-average-rating-value').append(rating.designer);
+		$('#designer-average-rating-value').attr("class",getRatingStyleClass(rating.designer));;
+	}
 }
 
+
+function getRatingStyleClass(number){
+	number = Math.floor( number );
+	if(number == 1){
+		return "badge badge-danger pull-right";
+	}
+	if(number == 2){
+		return "badge badge-warning pull-right";
+	}
+	if(number == 3){
+		return "badge badge-primary pull-right";
+	}
+	if(number == 4){
+		return "badge badge-info pull-right";
+	}
+	if(number == 5){
+		return "badge badge-success pull-right";
+	}
+}
 
 

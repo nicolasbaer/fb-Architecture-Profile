@@ -36,6 +36,10 @@ class Repository{
 	
 	
 	//----- building queries -----//
+	public function findBuildingById($id){
+		return $this->db->line("select * from Building building where building.id = ". $id);
+	}
+	
 	public function findAllBuildingsByUser($fbId, $keyword = null){
 		$whereClause = "";
 		
@@ -91,11 +95,11 @@ class Repository{
 	}
 	
 	public function findRatingsByUser($userId){
-		return $this->db->line("select * from Rating rating where rating.fk_user = ".$userId);
+		return $this->db->q("select rating.* from Rating rating join Building building on rating.fk_building = building.id where building.fk_user = ".$userId);
 	}
 	
 	public function findRatingsByBuilding($buildingId){
-		return $this->db->line("select * from Rating rating where rating.fk_building = ". $buildingId);
+		return $this->db->q("select * from Rating rating where rating.fk_building = ". $buildingId);
 	}
 	
 	public function updateRating($rating){
