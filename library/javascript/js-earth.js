@@ -20,7 +20,7 @@ function initCallback(pluginInstance) {
     ge.getWindow().setVisibility(true);
     visShow();
 
-	setKmlAndPlacemark('http://www.archipublic.com/models/4/doc.kml',47.3857,8.51783, "test");
+	//setKmlAndPlacemark('http://www.archipublic.com/models/4/doc.kml',47.3857,8.51783, "test");
 
 	// if a building ID is specified in the URL
 	// the building shall be loaded after google earth is ready
