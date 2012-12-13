@@ -105,6 +105,11 @@ function showComment(comment, append){
 	} else{
 		$('#comments-list').prepend(commentStr);
 	}
+}
+
+
+function updateRating(rating){
+	
 	
 }
 

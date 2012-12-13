@@ -70,6 +70,7 @@ function getBuildingDetails(id){
 		}
 	}).done(function( content ) {	
 		//content is encoded as JSON object
+		//alert(content);
 		var obj = jQuery.parseJSON(content);
 		
 		buildBuildingDetails(obj);
@@ -113,9 +114,9 @@ function saveRating(rating){
 		}
 	}).done(function( content ) {	
 		//content is encoded as JSON object
+		alert(content);
 		var obj = jQuery.parseJSON(content);
-		obj.user_id = obj.fk_user;
-
+		updateRating(obj);
 	});
 }
 
