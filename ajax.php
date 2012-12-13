@@ -25,7 +25,7 @@ require_once('./library/php.inc/fb-security.php');
 	
 	
 
-function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude) {
+function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude, $buildingId) {
 
     global $facebook;
         $fbUser=$facebook->getUser();
@@ -76,20 +76,20 @@ function searchControlPanel($keyword = null){
 	global $facebook;
 
 	$myBuildings = $repository->findAllBuildingsByUser($facebook->getUser(), $keyword);
-	//$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
+	$otherBuildings = $repository->findAllBuildingsVisibleToUser($facebook, $keyword);
 	
 	$outputMyBuildings = "";
 
 	
 	foreach($myBuildings as $building){
-		$outputMyBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
+		$outputMyBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], $building['building_id']);
 	} 
 	
 	
 	$outputOtherBuildings = "";
 	
 	foreach($otherBuildings as $building){
-		$outputOtherBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
+		$outputOtherBuildings .= insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], $building['building_id']);
 	}
 
 
