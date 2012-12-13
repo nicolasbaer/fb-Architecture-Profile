@@ -63,7 +63,7 @@
                 <!-- onclick="return false" prevents page reload -->
                 <button class="btn" id="toggle_button_control" onclick="changeToggleButtonIcon('toggle_button_icon_control')">
                     <i class="icon-chevron-up" id="toggle_button_icon_control"></i>
-                </button>
+               
             </a>
         </form>
     </div>
@@ -126,7 +126,18 @@
                 </div>
             </div>
             <!-- MODELS OF FRIENDS AND PUBLIC MODELS SECTION ENDS-->
-        
+        	<div class="accordion-group">
+        		<div class="accordion-heading content-accordion" onClick="window.open('http://www.archipublic.com/upload.php','Upload model','width=600,height=400')">
+                    <a class="accordion-toggle " align="right">
+						<button class="btn" id="upload" onClick="window.open('http://www.archipublic.com/upload.php','Upload model','width=600,height=400')">
+                    	 Upload a model <i class="icon-eject" id="upload"></i>
+                	</button>
+                   </a>
+                </div>
+  			                
+        	</div>
+        	<!-- UPLOAD SECTION ENDS HERE-->
+
         </div>
         </div>
     </div>
