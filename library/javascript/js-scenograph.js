@@ -23,6 +23,33 @@ function clearBuildingDetails(){
 	$('#overall-rating-number').empty();
 	$('#overall-rating-value').empty();
 	$('#comments-list').empty();
+	$('#fb-like-button').empty();
+}
+
+function loadFbLike($, url){
+$(function generateSocMedElements($, url) {
+    var id = "socmed",
+        $container,
+        $fb_root,
+        $fb_like;
+    if ($("#" + id).length <= 0) {
+        $container = $(document.createElement("aside")).
+            addClass("socmed").
+            attr("id", id);
+        $fb_root = $(document.createElement("div")).attr("id", "fb-root");
+        $fb_like = $(document.createElement("div")).
+            addClass("fb-like").
+            attr("data-href", url).
+            attr("data-send", "false").
+            attr("data-layout", "button_count").
+            attr("data-width", 82).attr("data-show-faces", "false");
+
+        $container.
+            appendTo($("header").first()).
+            append($fb_root).
+            append($fb_like);
+    }
+});
 }
 
 function buildBuildingDetails(details){	
@@ -66,12 +93,14 @@ function buildBuildingDetails(details){
 		}
 	}
 
-	
-	
-	
+	// update like button with URL to current model
+
+	var likeURL="http://www.archipublic.com/index.php?building="+details.building[0].building_id;
+	loadFbLike($, likeURL);	
 	// show details pane, since all content is loaded
 	$('#details_well').show();
 }
+
 
 
 function showComment(comment, append){

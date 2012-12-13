@@ -16,7 +16,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Sceno Graph</title>
