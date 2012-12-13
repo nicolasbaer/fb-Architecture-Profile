@@ -20,7 +20,7 @@ function initCallback(pluginInstance) {
     ge.getWindow().setVisibility(true);
     visShow();
 
-	//setKmlAndPlacemark('http://www.archipublic.com/models/4/doc.kml',47.3857,8.51783, "test");
+	setKmlAndPlacemark('http://www.archipublic.com/models/4/doc.kml',47.3857,8.51783, "test");
 
 	// if a building ID is specified in the URL
 	// the building shall be loaded after google earth is ready
@@ -52,7 +52,7 @@ function flyToModel(latitude, longitude){
 	ge.getView().setAbstractView(lookAt);
 }
 
-function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){	
+function setKmlAndPlacemark(kmlUrl, latitude, longitude, buildingID){	
 	// fetch new kml model from url
 	var link = ge.createLink('');
 	link.setHref(kmlUrl);
@@ -102,7 +102,11 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 		}
 		// Listen to the mousemove event on the globe.
 		//google.earth.addEventListener(ge.getGlobe(), 'mousemove', recordAltitude);
-		google.earth.addEventListener(placemark, 'click', alert(placemarkClickScript), true);
+		//google.earth.addEventListener(placemark, 'click', alert(placemarkClickScript), true);
+		google.earth.addEventListener(placemark,'click',function(kmlEvent) {
+            kmlEvent.preventDefault();
+            viewBuildingDetails(buildingID);
+		});
 	}
 }
 
