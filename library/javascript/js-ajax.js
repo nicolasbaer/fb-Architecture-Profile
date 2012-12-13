@@ -6,9 +6,19 @@ var currentBuildingId;
 $(document).ready(function() {
 
 						var timer;
-
+						var isPanelActive=false;
 						// Model / Architect Search
 						$("#search").keyup(function() {
+							
+								if(isPanelActive==false) {
+									
+									$(".collapse").removeClass('collapse');
+									changeToggleButtonIcon('toggle_button_icon_control');
+									
+									isPanelActive = true;
+									
+								
+								}
 								
 								clearTimeout(timer);
 								timer = setTimeout(function(){

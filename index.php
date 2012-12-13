@@ -47,6 +47,7 @@
 			<!-- facebook login redirect -->
 			<script type="text/javascript">
 		  		window.top.location = '<?php echo $fb_oauth_url ?>';
+									
 			</script>
 		<?php endif; ?>
 		
