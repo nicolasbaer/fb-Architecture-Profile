@@ -14,29 +14,18 @@
 
 <div id="fb-root"></div>
 <script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=302169083216716";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+
 
 $('.fixedVersion .modal').appendTo($("body"));
 </script>
     
-<div class="well well-small" style="right" id="details_well">
+<div class="well well-small" style="right;display:none" id="details_well">
     <div class="accordion" id="details-accordion">
           <div class="accordion-group">
               <!-- header of datails panel starts-->
             <div class="navbar-inner">
                 <div id="details-header">
-                    ModelName - DesignerName
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#details-accordion" href="#details-collapse">
-                        <button class="btn pull-right" id="toggle_button_details" onclick="changeToggleButtonIcon('toggle_button_icon_details')">
-                            <i class="icon-chevron-up" id="toggle_button_icon_details"></i>
-                        </button>
-                    </a>
+                    
                 </div>
             </div>
             <!-- header of datails panel ends-->
@@ -69,11 +58,11 @@ $('.fixedVersion .modal').appendTo($("body"));
                                 Average Rating
                             </span>
                             <span>
-                                <small>
+                                <small id="overall-rating-number">
                                     based on X ratings
                                 </small>
                             </span>
-                            <span class="badge badge-success pull-right">
+                            <span class="badge badge-success pull-right" id="overall-rating-value">
                                 5
                             </span>
                             <!-- Average rating section ends -->
@@ -189,21 +178,21 @@ $('.fixedVersion .modal').appendTo($("body"));
                             <!-- post comment and rate section starts -->                            
                             <div>
                                 <span>
-                                    <textarea rows="3" placeholder="Leave a comment ..."></textarea>
+                                    <textarea id="comment-textarea" rows="3" placeholder="Leave a comment ..."></textarea>
                                 </span>
                                 <span>
                                     <div class="pull-right">    
                                         <div class="btn-group pull-right" data-toggle="buttons-radio">
-                                             <button type="button" class="btn  btn-danger">1</button>
-                                              <button type="button" class="btn  btn-warning">2</button>
-                                              <button type="button" class="btn  btn-primary">3</button>
-                                              <button type="button" class="btn  btn-info">4</button>
-                                              <button type="button" class="btn  btn-success">5</button>
+                                             <button type="button" class="btn  btn-danger" onClick="saveRating(1);">1</button>
+                                              <button type="button" class="btn  btn-warning" onClick="saveRating(2);">2</button>
+                                              <button type="button" class="btn  btn-primary" onClick="saveRating(3);">3</button>
+                                              <button type="button" class="btn  btn-info" onClick="saveRating(4);">4</button>
+                                              <button type="button" class="btn  btn-success" onClick="saveRating(5);">5</button>
                                         </div>                                
                                         <br/>
                                         <span>
                                             <div class="fb-like" data-send="false" data-layout="button_count" data-width="105" data-show-faces="false" data-font="arial"></div>
-                                            <button type="submit" class="btn pull-right" id="submit-button">Post</button>
+                                            <button type="submit" class="btn pull-right" id="submit-button" onClick="saveComment();">Post</button>
                                         </span>                                        
                                     </div>
                                 </span>                            
@@ -219,14 +208,7 @@ $('.fixedVersion .modal').appendTo($("body"));
                                 <div class="row-fluid comment">                                    
                                     <div>
                                         <span>
-                                            Model Description
-                                        </span>
-                                        <span>
-                                            <time>
-                                                <small>
-                                                    Last update: 12-Dec-2012
-                                                </small>
-                                            </time>
+                                            <b>Model Description</b>
                                         </span>
                                         
                                         <p id="comment-string">
@@ -246,115 +228,6 @@ $('.fixedVersion .modal').appendTo($("body"));
                                       <li class="divider"></li>
                                 </ul>
                                 <!-- separator between meta item ends-->
-                                <!-- First detail item starts -->
-                                <div class="row-fluid comment">                                    
-                                    <div class="span4 comment_thumbnail_span">
-                                        <a href="#modal2" class="thumbnail thumb-for-list" role="button" data-toggle="modal">
-                                            <img src="http://www.archipublic.com/tests/grundriss.jpg" alt="sample foodprint" /> 
-                                        </a>
-                                        <!-- Modal -->
-                                        <div id="modal2" class="modal hide fade" style="display: none;">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                   <h3 id="myModalLabel">Title of Meta Info Item</h3>
-                                                   <time pull-right>12-Dec-2012</time>
-                                             </div>
-                                              <div class="modal-body">
-                                                <p><img src="http://www.archipublic.com/tests/grundriss.jpg"/> </p>
-                                              </div>
-                                              <div class="modal-footer" style="text-align:left">
-                                                                      
-                                                <small>
-                                                more info on meta info item more info on meta info item
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                </small>
-                                              </div>
-                                        </div>
-                                       </div>
-                                    <div>
-                                        <span>
-                                            Title of Meta Info Item
-                                        </span>
-                                        <span>
-                                            <time>
-                                                <small>
-                                                    12-Dec-2012
-                                                </small>
-                                            </time>
-                                        </span>
-                                        
-                                        <p id="comment-string">
-                                            <small>
-                                                more info on meta info item more info on meta info item
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                            </small>
-                                        </p>
-                                    </div>                                    
-                                </div>
-                                <!-- First detail item ends -->
-                                <!-- separator between meta item starts-->
-                                <br/>
-                                <ul class="nav nav-list">
-                                      <li class="divider"></li>
-                                </ul>
-                                <!-- separator between meta item ends-->
-                                <!-- Second detail item starts -->
-                                <div class="row-fluid comment">
-                                    <div class="span4 comment_thumbnail_span">
-                                        <a href="#modal1" class="thumbnail thumb-for-list" role="button" data-toggle="modal">
-                                            <img src="http://www.archipublic.com/tests/grundriss.jpg" alt="sample foodprint" /> 
-                                        </a>
-                                        <!-- Modal -->
-                                        <div id="modal1" class="modal hide fade" style="display: none;">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                   <h3 id="myModalLabel">Title of Meta Info Item</h3>
-                                                   <time pull-right>12-Dec-2012</time>
-                                             </div>
-                                              <div class="modal-body">
-                                                <p><img src="http://www.archipublic.com/tests/grundriss.jpg"/> </p>
-                                              </div>
-                                              <div class="modal-footer" style="text-align:left">
-                                                                      
-                                                <small>
-                                                more info on meta info item more info on meta info item
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                more info on meta info item more info on meta info item 
-                                                </small>
-                                              </div>
-                                        </div>
-                                       </div>
-                                    <div>
-                                        <span>
-                                            info item
-                                        </span>
-                                        <span>
-                                            <time>
-                                                <small>
-                                                    12-Dec-2012
-                                                </small>
-                                            </time>
-                                        </span>
-                                        
-                                        <p id="comment-string">
-                                            <small>
-                                                ;)
-                                            </small>
-                                        </p>
-                                    </div>                                    
-                                </div>
-                                <!-- Second detail item ends -->
                             </div>
                         </div>
                         <!-- Details Tab ends -->
