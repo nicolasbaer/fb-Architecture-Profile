@@ -12,12 +12,24 @@
 
 ?>
 
-<div id="fb-root"></div>
+
 <script>
 
 
 $('.fixedVersion .modal').appendTo($("body"));
 </script>
+
+
+<header><h1>OH HAI I HAZ A HEADER</h1>
+<div id="fb-root"></div>
+</header>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=148744491883305";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     
 <div class="well well-small" style="right;display:none" id="details_well">
     <div class="accordion" id="details-accordion">
@@ -190,8 +202,9 @@ $('.fixedVersion .modal').appendTo($("body"));
                                               <button type="button" class="btn  btn-success" onClick="saveRating(5);">5</button>
                                         </div>                                
                                         <br/>
-                                        <span>
-                                            <div class="fb-like" data-send="false" data-layout="button_count" data-width="105" data-show-faces="false" data-font="arial"></div>
+                                        <span id="fb-like-and-post">
+                                            
+                                            <div class="fb-like" data-href="http://www.archipublic.com" data-send="false" data-layout="button_count" data-width="105" data-show-faces="false"></div>
                                             <button type="submit" class="btn pull-right" id="submit-button" onClick="saveComment();">Post</button>
                                         </span>                                        
                                     </div>

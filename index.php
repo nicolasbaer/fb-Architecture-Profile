@@ -16,7 +16,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Sceno Graph</title>
@@ -61,7 +61,7 @@
 		<!-- include details panel -->
 		<?php require_once('./library/php.inc/details.inc.php');?>
 		
-		<div id="altitude"><p>Current altitude: N/A<br />Max altitude: N/A</p></div> 
+		<div id="altitude" style="display:none;"><p>Current altitude: N/A<br />Max altitude: N/A</p></div> 
 	
 	</body>
 </html>

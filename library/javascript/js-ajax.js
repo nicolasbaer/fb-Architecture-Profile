@@ -5,12 +5,29 @@ var currentBuildingId;
 
 $(document).ready(function() {
 
+						var timer;
+
 						// Model / Architect Search
 						$("#search").keyup(function() {
+								
+								clearTimeout(timer);
+								timer = setTimeout(function(){
+									performSearch();	  
+								}, 500);
+						  
+	  
+							//clearTimeout(timer);
+							//timer = setTimeout(alert("sdjflksjdf"), 1000);
+							
 						
-							getModel(1);
+						});
 						
-							searchkey = $(this).val();
+								
+});
+
+function performSearch() {
+	
+	searchkey = $("#search").val();
 							
 							var json = '{"keyword":"'+searchkey+'"}';
 							
@@ -45,12 +62,7 @@ $(document).ready(function() {
 							  $("#allmodels_list").html(obj['otherbuildings']);
 							  
 							});
-						
-						
-						});
-						
-								
-});
+}	
 
 
 /*
@@ -120,7 +132,7 @@ function saveRating(rating){
 	});
 }
 
-function getModel(id) {
+function loadModelFromURL(id) {
 	
 	/* Function required an id of a model. It fetches the entire 
 	database entry for the specified model via ajax and returns 
@@ -147,12 +159,12 @@ function getModel(id) {
 		}
 	}).done(function( content ) {
 								
-		//content is encoded as JSON object
-		var obj = jQuery.parseJSON(content);
-								
-								
-		return obj;					
+		//content is encoded as JSON object	
 		
+		var obj = jQuery.parseJSON(content);
+		
+		setKmlAndPlacemark(obj[0].kml_ref, obj[0].y_coordinate, obj[0].x_coordinate, "");
+								
 							  
 		});
 						
