@@ -79,9 +79,20 @@ class Repository{
 	}
 	
 	
-	
+	/**
+	  * Returns an array of building details.
+	  *
+	  */
 	public function findBuildingDetails($id){
-		// TODO
+		$details = array();
+		
+		$details['building'] = $this->db->q("select building.name as building_name, user.name as user_name, user.id as user_id, building.id as building_id, building.*, user.* from Building building join User user on building.fk_user = user.id where building.id = ".$id);
+		$details['comments'] = $this->db->q("select comment.*, user.name as user_name, user.id as user_id from Comment comment join User user on comment.fk_user = user.id where fk_building = ".$id." order by id desc");
+		$details['ratings'] = $this->db->q("select rating.* from Rating rating where fk_building = ". $id);
+		$details['media'] = $this->db->q("select media.* from Media media where fk_building = ". $id);
+		
+		return $details;
+		
 	}
 	
 	

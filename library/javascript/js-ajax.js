@@ -50,6 +50,31 @@ $(document).ready(function() {
 });
 
 
+/*
+ * Fetches all details of a building by an ajax request.
+ */
+function getBuildingDetails(id){
+	var json = '{"id":"'+id+'"}';
+	$.ajax({type: "POST", url: "/ajax.php", data: "&method=getBuildingDetails&params="+json,
+		error: function(){
+			alert("An error occurred...!");
+			return false;			
+		},
+		timeout: function(){			
+			alert("Error: Server timeout");
+			return false;		
+		}
+	}).done(function( content ) {	
+		//content is encoded as JSON object
+		var obj = jQuery.parseJSON(content);
+		
+		buildBuildingDetails(obj);
+		
+	});
+}
+
+
+
 function getModel(id) {
 	
 	/* Function required an id of a model. It fetches the entire 

@@ -7,7 +7,7 @@
 	
 	
 
-	function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude) {
+	function insertModelListItem($title, $architect, $userId, $kml, $latitude, $longitude, $buildingId) {
 		
 		global $facebook;
         $fbUser=$facebook->getUser();
@@ -35,7 +35,7 @@
                   <div class="span4">
                      <div class="btn-group pull-right">'
                            	.$manageButton.
-                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\')"><i class="icon-eye-open icon-black"></i></a>
+                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\');viewBuildingDetails('.$buildingId.');"><i class="icon-eye-open icon-black"></i></a>
                      </div> <!-- /btn group-->
                   </div>
              </div>
@@ -45,7 +45,6 @@
                  <li class="divider"></li>
              </ul>
              <!-- separator between list entries ends-->';
-		
 	}
 	
 
@@ -89,7 +88,7 @@
                   			
 								$buildings = $repository->findAllBuildingsByUser($facebook->getUser());
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], $building['building_id']);
 								}
 							
 							?>
@@ -117,7 +116,7 @@
 								$buildings = $repository->findAllBuildingsVisibleToUser($facebook);
 								
 								foreach($buildings as $building){
-									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate']);
+									insertModelListItem($building['building_name'], $building['user_name'], $building['user_id'], $building['kml_ref'], $building['x_coordinate'], $building['y_coordinate'], $building['building_id']);
 								}
 							
 							?>

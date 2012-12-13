@@ -98,6 +98,32 @@ function searchControlPanel($keyword = null){
 
 }
 
+function getBuildingDetails($id = null){
+	if($id != null){
+		
+		global $repository;
+		global $facebook;
+		
+		$details = $repository->findBuildingDetails($id);
+		
+		// calculate rating details
+		if($details['ratings']){
+			foreach($details['ratings'] as $rating){
+				$number = $rating['points'];
+				$details['rating_overall'] += $number;
+			}
+			$details['rating_overall'] /= sizeof($details['ratings']);
+		} else{
+			$details['rating_overall'] = false;
+		}
+		
+		return $details;
+	}
+	
+	return null;
+}
+
+
 function getModel($id = null){
 	
 	global $repository;
