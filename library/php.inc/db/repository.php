@@ -90,6 +90,14 @@ class Repository{
 		return $this->db->line("select * from Rating rating where rating.fk_building = ". $buildingId ." and rating.fk_user = ".$userId);
 	}
 	
+	public function findRatingsByUser($userId){
+		return $this->db->line("select * from Rating rating where rating.fk_user = ".$userId);
+	}
+	
+	public function findRatingsByBuilding($buildingId){
+		return $this->db->line("select * from Rating rating where rating.fk_building = ". $buildingId);
+	}
+	
 	public function updateRating($rating){
 		return $this->db->s("update Rating rating set rating.points = ".$rating['points'] ." where rating.fk_user = ".$rating['fk_user'] ." and rating.fk_building = ". $rating['fk_building']);
 	}

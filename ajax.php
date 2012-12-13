@@ -108,6 +108,7 @@ function getBuildingDetails($id = null){
 		
 		// calculate rating details
 		if($details['ratings']){
+			$details['rating_overall'] = 0;
 			foreach($details['ratings'] as $rating){
 				$number = $rating['points'];
 				$details['rating_overall'] += $number;
@@ -177,7 +178,32 @@ function saveRating($rating = null, $buildingId = null){
 			$repository->updateRating($existingRating);
 		}
 		
+		// recalculate the ranking
+		$r = array();
+		$ratings = $repository->findRatingsByBuilding($buildingId);
+		if($ratings){
+			$r['overall_building'] = 0;
+			foreach($ratings as $rating){
+				$number = $rating['points'];
+				$r['overall_building'] += $number;
+			}
+			$r['overall_building'] /= sizeof($ratings);
+			$r['overall_building_amount'] = sizeof($ratings);
+		}
 		
+		$userRatings = $repository->findRatingsByUser($facebook->getUser());
+		if($userRatings){
+			$r['designer'] = 0;
+			foreach($userRatings as $ur){
+				$r['designer'] += $ur;
+			}
+			
+			$r['designer'] /= sizeof($userRatings);
+			$r['designer_amount'] = sizeof($userRatings);
+		}
+		
+		
+		return $r;
 	}
 	
 }
