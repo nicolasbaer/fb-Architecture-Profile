@@ -47,7 +47,8 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 	
 	
 	// fly to model
-	flyToModel(latitude, longitude);
+	// diese methode macht kein sinn, mit setFlyToView fliegt man bereits hin
+	//flyToModel(latitude, longitude);
 	
 	// create point
 	// Check here if point already exists.
