@@ -19,6 +19,8 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta property="og:title" content="ScenoGraph"/>
+		<meta property="og:url" content="http://www.archipublic.com"/>
 		<title>Sceno Graph</title>
 		
 		<!-- jquery -->

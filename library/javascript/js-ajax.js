@@ -82,7 +82,7 @@ function getBuildingDetails(id){
 		}
 	}).done(function( content ) {	
 		//content is encoded as JSON object
-		alert(content);
+		//alert(content);
 		var obj = jQuery.parseJSON(content);
 		
 		buildBuildingDetails(obj);
