@@ -86,11 +86,11 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 		var currentAlt = event.getAltitude();
 		maxAlt = Math.max(maxAlt, currentAlt);
 		document.getElementById('altitude').innerHTML = '<p>Current altitude: ' + currentAlt + '<br />Max altitude: '+ maxAlt + '</p>';
+		
 		}
-
 		// Listen to the mousemove event on the globe.
 		//google.earth.addEventListener(ge.getGlobe(), 'mousemove', recordAltitude);
-		google.earth.addEventListener(placemark, 'mousemove', recordAltitude);
+		google.earth.addEventListener(placemark, 'mousemove', alert("mouseover"));
 	}
 }
 
