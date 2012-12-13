@@ -52,18 +52,16 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 	// diese methode macht kein sinn, mit setFlyToView fliegt man bereits hin
 	//flyToModel(latitude, longitude);
 	
-	// create point
-	var point = ge.createPoint('');
-	point.setLatitude(latitude);
-	point.setLongitude(longitude);
+	// Check here if point already exists.
 	var check = false;
 	for (var i = 0; i < placemarkArray.length; i++){
-		if (placemarkArray.get(i) == point){
+		if (placemarkArray[i] == kmlUrl){
 			check = true;
 		}
 	}
+	// create point
 	if (check == false){
-		pointArray.push(point);
+		pointArray.push(kmlUrl);
 		var placemark = ge.createPlacemark('');
 		//placemark.setName("test");
 		ge.getFeatures().appendChild(placemark);
@@ -76,9 +74,11 @@ function setKmlAndPlacemark(kmlUrl, latitude, longitude, placemarkClickScript){
 		placemark.setStyleSelector(style);
 
 		// Create point
-	
+		var point = ge.createPoint('');
+		point.setLatitude(latitude);
+		point.setLongitude(longitude);
 		placemark.setGeometry(point);
-		// Check here if point already exists.
+		
 	}
 }
 
