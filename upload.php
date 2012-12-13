@@ -40,7 +40,7 @@
 </tr>
 
 <tr>
-<td>Description:</td> <td><textarea name="description "></textarea><br></td>
+<td>Description:</td> <td><textarea name="description"></textarea><br></td>
 </tr>
 
 
