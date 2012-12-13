@@ -58,7 +58,7 @@ function buildBuildingDetails(details){
 	} else{
 		for(var i = 0; i < details.comments.length; i++) {
 			comment = details.comments[i];
-			showComment(comment);
+			showComment(comment, true);
 		}
 	}
 
@@ -70,9 +70,8 @@ function buildBuildingDetails(details){
 }
 
 
-function showComment(comment){
-	$('#comments-list').append(
-		'<div class="row-fluid comment">'
+function showComment(comment, append){
+	var commentStr = 	'<div class="row-fluid comment">'
        +'   <div class="span3 comment_thumbnail_span">'
        +'        <div class="thumbnail thumb-for-list">'
        +'            <img src="http://graph.facebook.com/'+comment.user_id+'/picture" />'
@@ -85,13 +84,10 @@ function showComment(comment){
        +'       <span>'
        +'           <time>'
        +'                <small>'
-       +'                    12-Dec-2012'
+       +'                    ' + comment.postdate
        +'                </small>'
        +'            </time>'
        +'       </span>'
-       +'        <span class="badge badge-warning pull-right">'
-       +'            2'
-       +'        </span>'
        +'       <p id="comment-string">'
        +'           <small>'
        +'               ' + comment.content
@@ -103,7 +99,13 @@ function showComment(comment){
        +'<ul class="nav nav-list">'
        +'	<li class="divider"></li>'
        +'</ul>'
-		);
+	
+	if(append){
+		$('#comments-list').append(commentStr);
+	} else{
+		$('#comments-list').prepend(commentStr);
+	}
+	
 }
 
 

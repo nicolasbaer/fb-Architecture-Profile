@@ -136,8 +136,50 @@ function getModel($id = null){
 	
 }
 
+function saveComment($comment = null, $buildingId = null){
+	if($comment != null && $buildingId != null){
+		global $repository;
+		global $facebook;
+		
+		$c = array();
+		$c['fk_building'] = $buildingId;
+		$c['fk_user'] = $facebook->getUser();
+		$c['content'] = $comment;
+		$c['postdate'] = date('Y-m-d H:i:s');
+		
+		$repository->saveComment($c);
+		
+		// load user
+		$userDetails = $repository->findUserByFBId($facebook->getUser());
+		$c['user_name'] = $userDetails[0]['name'];
+		
+		return $c;
+	}
+	
+}
 
-
-
+function saveRating($rating = null, $buildingId = null){
+	if($rating != null && $buildingId != null){
+		global $repository;
+		global $facebook;
+		
+		$r = array();
+		$r['fk_building'] = $buildingId;
+		$r['fk_user'] = $facebook->getUser();
+		$r['points'] = $rating;
+		
+		// if entry exists, update it, since no user can vote twice for one model
+		$existingRating = $repository->findRating($buildingId, $facebook->getUser());
+		if($existingRating == null){
+			$repository->saveRating($r);
+		} else{
+			$existingRating['points'] = $r['points'];
+			$repository->updateRating($existingRating);
+		}
+		
+		
+	}
+	
+}
 
 ?>

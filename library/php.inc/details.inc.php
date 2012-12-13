@@ -178,21 +178,21 @@ $('.fixedVersion .modal').appendTo($("body"));
                             <!-- post comment and rate section starts -->                            
                             <div>
                                 <span>
-                                    <textarea rows="3" placeholder="Leave a comment ..."></textarea>
+                                    <textarea id="comment-textarea" rows="3" placeholder="Leave a comment ..."></textarea>
                                 </span>
                                 <span>
                                     <div class="pull-right">    
                                         <div class="btn-group pull-right" data-toggle="buttons-radio">
-                                             <button type="button" class="btn  btn-danger">1</button>
-                                              <button type="button" class="btn  btn-warning">2</button>
-                                              <button type="button" class="btn  btn-primary">3</button>
-                                              <button type="button" class="btn  btn-info">4</button>
-                                              <button type="button" class="btn  btn-success">5</button>
+                                             <button type="button" class="btn  btn-danger" onClick="saveRating(1);">1</button>
+                                              <button type="button" class="btn  btn-warning" onClick="saveRating(2);">2</button>
+                                              <button type="button" class="btn  btn-primary" onClick="saveRating(3);">3</button>
+                                              <button type="button" class="btn  btn-info" onClick="saveRating(4);">4</button>
+                                              <button type="button" class="btn  btn-success" onClick="saveRating(5);">5</button>
                                         </div>                                
                                         <br/>
                                         <span>
                                             <div class="fb-like" data-send="false" data-layout="button_count" data-width="105" data-show-faces="false" data-font="arial"></div>
-                                            <button type="submit" class="btn pull-right" id="submit-button">Post</button>
+                                            <button type="submit" class="btn pull-right" id="submit-button" onClick="saveComment();">Post</button>
                                         </span>                                        
                                     </div>
                                 </span>                            

@@ -79,6 +79,26 @@ class Repository{
 	}
 	
 	
+	//----- comments ----//
+	public function saveComment($comment){
+		return $this->db->insert("Comment", $comment);
+	}
+	
+	
+	//------ rating ----//
+	public function findRating($buildingId, $userId){
+		return $this->db->line("select * from Rating rating where rating.fk_building = ". $buildingId ." and rating.fk_user = ".$userId);
+	}
+	
+	public function updateRating($rating){
+		return $this->db->s("update Rating rating set rating.points = ".$rating['points'] ." where rating.fk_user = ".$rating['fk_user'] ." and rating.fk_building = ". $rating['fk_building']);
+	}
+	
+	public function saveRating($rating){
+		return $this->db->insert("Rating", $rating);
+	}
+	
+	
 	/**
 	  * Returns an array of building details.
 	  *
