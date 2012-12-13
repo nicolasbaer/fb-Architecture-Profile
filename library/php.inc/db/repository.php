@@ -131,18 +131,23 @@ class Repository{
 	
 	//----- helper functions ------//
 	private function getUserNetworkIds($facebook){
-		// init array for all relatives
-		$networkIds = array();
-		
-		// add friends to network
-		$friends = $facebook->api('/me/friends');
-		if($friends){
-			foreach($friends['data'] as $friend){
-				$networkIds[] = $friend['id'];
+		if(!isset($_SESSION['USER_NETWORK'])){
+			// init array for all relatives
+			$networkIds = array();
+
+			// add friends to network
+			$friends = $facebook->api('/me/friends?fields=id');
+			if($friends){
+				foreach($friends['data'] as $friend){
+					$networkIds[] = $friend['id'];
+				}
 			}
+			
+			$_SESSION['USER_NETWORK'] = $networkIds;
 		}
 		
-		return $networkIds;
+		
+		return $_SESSION['USER_NETWORK'];
 	}
 
 	
