@@ -53,7 +53,7 @@ function insertModelListItem($title, $architect, $userId, $kml, $latitude, $long
                   <div class="span4">
                      <div class="btn-group pull-right">'
                            	.$manageButton.
-                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', \'#\');viewBuildingDetails('.$buildingId.');"><i class="icon-eye-open icon-black"></i></a>
+                            '<a class="btn" onClick="setKmlAndPlacemark(\''.$kml.'\', '.$latitude.', '.$longitude.', '.$buildingId.');viewBuildingDetails('.$buildingId.');"><i class="icon-eye-open icon-black"></i></a>
                      </div> <!-- /btn group-->
                   </div>
              </div>
