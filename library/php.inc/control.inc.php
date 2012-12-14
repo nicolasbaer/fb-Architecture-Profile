@@ -63,7 +63,7 @@
                 <!-- onclick="return false" prevents page reload -->
                 <button class="btn" id="toggle_button_control" onclick="changeToggleButtonIcon('toggle_button_icon_control')">
                     <i class="icon-chevron-up" id="toggle_button_icon_control"></i>
-               
+               	</button>
             </a>
         </form>
     </div>
