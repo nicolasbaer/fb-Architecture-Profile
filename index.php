@@ -63,8 +63,6 @@
 		
 		<!-- include details panel -->
 		<?php require_once('./library/php.inc/details.inc.php');?>
-		
-		<div id="altitude" style="display:none;"><p>Current altitude: N/A<br />Max altitude: N/A</p></div> 
 	
 	</body>
 </html>
